@@ -11,7 +11,6 @@ const reponseInterceptor = (req, res, next) => {
     if (code >= 200 && code < 300) {
       const formattedData = ReS(code, payload, message);
       originalJson.call(res, formattedData);
-      // originalJson(formattedData)
     }
 
     // Ngược lại là thất bại

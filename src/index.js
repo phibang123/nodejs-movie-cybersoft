@@ -1,5 +1,6 @@
 const express = require("express");
 const rootRouter = require("./routes");
+const { reponseInterceptor } = require("./middlewares/interceptors");
 
 
 
@@ -8,10 +9,12 @@ const rootRouter = require("./routes");
 
 const app = express(); 
 app.use(express.json());
+app.use(reponseInterceptor);
 
 
-
-
+app.get("/ping", (req, res) => {
+  res.status(204).json(204, "OK");
+});
 
 
 app.use("/api", rootRouter);

@@ -1,5 +1,5 @@
 const {
-	MaNhom,
+	LoaiNguoiDung,
 	sequelize,
 	Phim,
 	Banner,
@@ -12,14 +12,20 @@ const phimModel = require("../tables/phim.model");
 const fistData = () => {
 	sequelize
 		.sync({ force: true })
-		//Mã Nhóm
+	  // LoaiNguoiDung
 		.then((result) => {
-			return MaNhom.create({ MN_maNhom: "GP01" });
+			return LoaiNguoiDung.create({
+				LND_maLoaiNguoiDung: "KhachHang"
+			});
+		})
+		.then((result) => {
+			return LoaiNguoiDung.create({
+				LND_maLoaiNguoiDung: "QuanTri"
+			});
 		})
 		//Phim
 		.then((result) => {
 			return Phim.create({
-				MN_maNhom: "GP01",
 				P_tenPhim: "Mắt Biết",
 				P_hinhAnh: "http://movieapi.cyberlearn.vn/hinhanh/matt-biec_gp01.jpg",
 				P_biDanh: "mat-biet",
@@ -34,7 +40,6 @@ const fistData = () => {
 		})
 		.then((result) => {
 			return Phim.create({
-				MN_maNhom: "GP01",
 				P_tenPhim: "Spider-Man: No Way Home",
 				P_hinhAnh:
 					"http://movieapi.cyberlearn.vn/hinhanh/spider-man-no-way-home-1_gp01.jpg",

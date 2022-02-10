@@ -1,10 +1,8 @@
 const express = require("express");
+const quanLyNguoiDungContronller = require("../../controllers/quanLyNguoiDung.controller")
 
 const quanLyNguoiDungRouter = express.Router();
 
-quanLyNguoiDungRouter.get("/", (req, res) =>
-{
-  res.status(200).json(200, "success");
-});
+quanLyNguoiDungRouter.post("/DangKy", quanLyNguoiDungContronller.dangKyControlelr);
 
 module.exports = quanLyNguoiDungRouter;

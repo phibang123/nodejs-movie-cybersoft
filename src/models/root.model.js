@@ -30,9 +30,7 @@ connected();
 
 const basename = path.basename(__filename);
 
-console.log(fs.readdirSync(path.join(__dirname, "/tables")));
 
-console.log(basename);
 
 fs.readdirSync(path.join(__dirname, "/tables"))
   .filter((file) => {

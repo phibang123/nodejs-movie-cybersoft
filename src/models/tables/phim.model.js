@@ -5,10 +5,6 @@ module.exports = (sequelize) => {
     static associate(db)
     {
       
-      this.belongsTo(db.MaNhom, {
-        as: "phim",
-        foreignKey: "MN_maNhom",
-      });
       this.hasOne(db.Banner, {
         foreignKey: "P_maPhim",
       })
@@ -28,10 +24,7 @@ module.exports = (sequelize) => {
         primaryKey: true,
 				autoIncrement: true,
       },
-      //Ma Nhóm
-      MN_maNhom:{
-        type: DataTypes.STRING, // 
-      },
+      
       P_tenPhim: {
         type: DataTypes.STRING, //  
         collate: 'utf8_unicode_ci', 
