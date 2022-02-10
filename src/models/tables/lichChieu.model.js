@@ -13,6 +13,12 @@ module.exports = (sequelize) => {
       this.belongsTo(db.LichChieuTheoPhim, {
         foreignKey: "P_maRap",
       });
+
+      //LichChieu N:M  Ghe
+      this.belongsToMany(db.Ghe, {
+        through: db.GheXuatChieu,
+        foreignKey: "LC_maLichChieu",
+      })
     }
   }
 

@@ -1,36 +1,32 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 
 module.exports = (sequelize) => {
-  class Ghe extends Model {
+  class DatVe extends Model {
     static associate(db) {
-       //Ghe N:M  LichChieu
-      this.belongsToMany(db.LichChieu, {
-        through: db.GheXuatChieu,
-        foreignKey: "G_maGhe",
-      })
-    
+       //DatVe N:1  NguoiDung
+       
+      this.hasMany(db.ChiTietDatVe, {
+        foreignKey: "DV_id",
+      });
     }
   }
 
-  Ghe.init(
+  DatVe.init(
     {
-      G_maGhe: {
+      DV_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      G_tenGhe: {
-        type: DataTypes.STRING, 
-        collate: 'utf8_unicode_ci', 
+      ND_id: {
+        type: DataTypes.INTEGER
+      },
+      DV_tongTien: {
+        type: DataTypes.FLOAT, 
         allowNull: false
       },
-      G_loaiGhe: {
-        type: DataTypes.STRING, 
-        collate: 'utf8_unicode_ci', 
-        allowNull: false
-      },
-      G_stt: {
-        type: DataTypes.INTEGER, 
+      DV_ngayThanhToan: {
+        type: DataTypes.DATE, 
       },
       
       createdAt: {
@@ -44,11 +40,11 @@ module.exports = (sequelize) => {
     },
     {
       sequelize,
-      modelName: "Ghe",
-      tableName: "ghe",
+      modelName: "DatVe",
+      tableName: "datVe",
       timestamps: true, // Nếu false bỏ qua createdAt, updatedAt
     }
   );
 
-  return Ghe;
+  return DatVe;
 };

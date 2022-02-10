@@ -4,8 +4,9 @@ module.exports = (sequelize) => {
   class HeThongRap extends Model {
     static associate(db) {
       //khai báo các mối quan hệ ở đây
+
+      // HeThongRap 1:N CumRap
       this.hasMany(db.CumRap, {
-        as: "cumRap",
         foreignKey: "HTR_maHeThongRap",
       });
     }

@@ -10,7 +10,6 @@ module.exports = (sequelize) => {
         foreignKey: "MN_maNhom",
       });
       this.hasOne(db.Banner, {
-        as: "banner",
         foreignKey: "P_maPhim",
       })
 

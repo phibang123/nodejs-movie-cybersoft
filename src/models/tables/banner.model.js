@@ -5,6 +5,7 @@ module.exports = (sequelize) => {
     static associate(db)
     {
       this.belongsTo(db.Phim, {
+        as: "bannerPhim",
         foreignKey: "P_maPhim",
       });
     }

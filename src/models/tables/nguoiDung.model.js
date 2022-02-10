@@ -8,6 +8,11 @@ module.exports = (sequelize) => {
         as: "loaiNguoiDung",
         foreignKey: "LND_maLoaiNguoiDung",
       });
+
+      // NguoiDung 1:N DatVe
+      this.hasMany(db.DatVe, {
+        foreignKey: "ND_id",
+      });
     }
   }
 
