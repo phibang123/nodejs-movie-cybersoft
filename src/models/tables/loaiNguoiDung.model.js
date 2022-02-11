@@ -18,10 +18,7 @@ module.exports = (sequelize) => {
       },
       LND_tenLoai: {
         type: DataTypes.STRING, //  
-        get() {
-          const rawValue = this.getDataValue('LND_tenLoai');
-          return rawValue.toUpperCase()
-        }
+       
       },
      
     },

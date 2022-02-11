@@ -1,4 +1,4 @@
-const { dangKy, dangNhap, loaiNguoiDung } = require("../services/quanLyNguoiDung.service");
+const { dangKy, dangNhap, loaiNguoiDung,danhSachNguoiDung,danhSachNguoiDungPhanTrang } = require("../services/quanLyNguoiDung.service");
 
 
 const dangKyControlelr = async (req, res) =>
@@ -46,8 +46,33 @@ const layDanhSachLoaiNguoiDungController = async (req, res) =>
     return res.status(400).json(400, error);
   }
 }
+
+const layDanhSachNguoiDungController = async (req, res) =>
+{
+  try
+  {
+    let { tuKhoa = "" } = req.query;
+    const danhSachND = await danhSachNguoiDung(tuKhoa);
+    return res.status(200).json(200, danhSachND );
+  } catch (error) {
+    return res.status(500).json(500, error);
+  }
+}
+
+const layDanhSachNguoiDungPhanTranController = async (req, res) =>
+{
+  try
+  {
+    let { tuKhoa = "" } = req.query;
+    await danhSachNguoiDungPhanTrang()
+  } catch (error) {
+    
+  }
+}
 module.exports = {
   dangKyControlelr,
   dangNhapController,
-  layDanhSachLoaiNguoiDungController
+  layDanhSachLoaiNguoiDungController,
+  layDanhSachNguoiDungController,
+  layDanhSachNguoiDungPhanTranController
 };

@@ -36,5 +36,16 @@ Content-Type: application/json
 
 ###
 //Lay Loai Nguoi Dung 
-get  http://localhost:3000/api/QuanLyNguoiDung/LayDanhSachLoaiNguoiDung
+GET  http://localhost:3000/api/QuanLyNguoiDung/LayDanhSachLoaiNguoiDung
 
+###
+//Lay Loai danh sach nguoi dung
+GET http://localhost:3000/api/QuanLyNguoiDung/LayDanhSachNguoiDung?tuKhoa=&maNhom=GP01
+
+###
+//tìm kiềm người dùng
+GET http://localhost:3000/api/QuanLyNguoiDung/TimKiemNguoiDung?tuKhoa=bang
+
+###
+//lấy danh sách người dùng phân trang
+GET http://localhost:3000/api/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang

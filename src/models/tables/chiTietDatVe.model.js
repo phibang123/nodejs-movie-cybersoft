@@ -28,8 +28,6 @@ module.exports = (sequelize) => {
         autoIncrement: true
       },
 
-    
-      
       DV_id: {
         type: DataTypes.INTEGER, //  
       },

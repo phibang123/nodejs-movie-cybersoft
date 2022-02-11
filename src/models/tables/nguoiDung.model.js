@@ -95,6 +95,7 @@ module.exports = (sequelize) => {
           }
 					const salt = bcrypt.genSaltSync(Number(config.secrect_bcrypt));
 					const hash = bcrypt.hashSync(value, salt);
+					
 
 					this.setDataValue("ND_matKhau", hash);
 				},
