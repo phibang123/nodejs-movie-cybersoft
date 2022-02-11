@@ -9,15 +9,26 @@ get http://localhost:3000/ping
 
 
 ------------------------- Quan Ly Nguoi Dung ------------------------------
-//Dang ky
 ###
+//Dang ky
 POST  http://localhost:3000/api/QuanLyNguoiDung/DangKy
 Content-Type: application/json
 
 {
-  "taiKhoan": "bang113",
-  "matKhau": "123122",
-  "email": "phibang51@gmail.com",
-  "soDt": "1212162",
+  "taiKhoan": "bansg535",
+  "matKhau": "1263222",
+  "email": "phibansg45751@gmail.com",
+  "soDt": "12121925",
   "hoTen": "string"
+}
+
+
+###
+//Dang nhap
+POST  http://localhost:3000/api/QuanLyNguoiDung/DangNhap
+Content-Type: application/json
+
+{
+  "taiKhoan" : "bansg535",
+  "matKhau": "1263222"
 }

@@ -1,4 +1,5 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
+const config = require("../../config/index")
 const bcrypt = require("bcrypt");
 module.exports = (sequelize) => {
 	class NguoiDung extends Model {
@@ -63,11 +64,11 @@ module.exports = (sequelize) => {
 				},
 			},
 			ND_soDt: {
-				type: DataTypes.INTEGER,
+				type: DataTypes.FLOAT,
         allowNull: false,
 				validate: {
 					isNumeric: {
-						msg: "số điện thoại không đúng định dạng",
+						msg: "số điện thoại phải là số",
 					},
 					notNull: {
 						msg: "số điện thoại không được bỏ trống",
@@ -82,20 +83,17 @@ module.exports = (sequelize) => {
 				type: DataTypes.STRING,
 				allowNull: false,
 				validate: {
-					// min: {
-					//   args: 6,
-					//   msg: "mật khẩu phải lớn hơn 5 kí tự"
-					// },
-					// max: {
-					//   args: 32,
-					//   msg: "mật khẩu phải nhỏ hơn 32 kí tự"
-					// },
 					notNull: {
 						msg: "mật khẩu không được bỏ trống",
 					},
 				},
-				set(value) {
-					const salt = bcrypt.genSaltSync();
+        set(value)
+        {
+          if (value.length <= 6 || value .length>= 32)
+          {
+            throw new Error('mật khẩu phải lớn hơn 6 và nhỏ hơn 32 kí tự');
+          }
+					const salt = bcrypt.genSaltSync(Number(config.secrect_bcrypt));
 					const hash = bcrypt.hashSync(value, salt);
 
 					this.setDataValue("ND_matKhau", hash);

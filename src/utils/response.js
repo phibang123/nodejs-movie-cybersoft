@@ -2,18 +2,31 @@
 const moment = require('moment'); 
 
 
-const ReS = (code, content, message = "") => {
+const ReS = (code, data, message = "") => {
   const resp = { success: true };
+  
+  if (typeof data === "object")
+  {
+    content = {...data}
+  }
+  else
+  {
+    content = data;
+  }
 
   if (message) {
     resp.message = message;
+  }
+  else
+  {
+    resp.message = "Xử lý thành công!";
   }
   if (code) {
     resp.statusCode = code;
   }
   resp.dateTime = moment().format();
   resp.messageConstants = null;
-  return {  content, ...resp };
+  return { content , ...resp };
 };
 
 // hàm format kết quả trả về của API khi thất bại cho client
@@ -41,7 +54,6 @@ const ReE = (code, err, message = "") => {
   // } else {
   //   errors = [err];
   // }
-  
   if (Array.isArray(err) && err.length > 0) {
     content = err.map((e) => e.message);
   } else if (typeof err === "object" && err.message) {
