@@ -1,19 +1,19 @@
 const express = require("express");
-const quanLyNguoiDungContronller = require("../../controllers/quanLyNguoiDung.controller")
+const quanLyNguoiDungController = require("../../controllers/quanLyNguoiDung.controller")
 
 const quanLyNguoiDungRouter = express.Router();
 
 
-quanLyNguoiDungRouter.get("/LayDanhSachLoaiNguoiDung", quanLyNguoiDungContronller.layDanhSachLoaiNguoiDungController);
+quanLyNguoiDungRouter.get("/LayDanhSachLoaiNguoiDung", quanLyNguoiDungController.layDanhSachLoaiNguoiDungController);
 
-quanLyNguoiDungRouter.post("/DangKy", quanLyNguoiDungContronller.dangKyControlelr);
+quanLyNguoiDungRouter.post("/DangKy", quanLyNguoiDungController.dangKyControlelr);
 
-quanLyNguoiDungRouter.post("/DangNhap", quanLyNguoiDungContronller.dangNhapController);
+quanLyNguoiDungRouter.post("/DangNhap", quanLyNguoiDungController.dangNhapController);
 
-quanLyNguoiDungRouter.get("/LayDanhSachNguoiDung", quanLyNguoiDungContronller.layDanhSachNguoiDungController);
+quanLyNguoiDungRouter.get("/LayDanhSachNguoiDung", quanLyNguoiDungController.layDanhSachNguoiDungController);
 
-quanLyNguoiDungRouter.get("/LayDanhSachNguoiDungPhanTrang", quanLyNguoiDungContronller.layDanhSachNguoiDungPhanTranController);
+quanLyNguoiDungRouter.get("/LayDanhSachNguoiDungPhanTrang", quanLyNguoiDungController.layDanhSachNguoiDungPhanTranController);
 
-quanLyNguoiDungRouter.get("/TimKiemNguoiDung", quanLyNguoiDungContronller.layDanhSachNguoiDungController); // nhưng lấy danh sách người dùng
+quanLyNguoiDungRouter.get("/TimKiemNguoiDung", quanLyNguoiDungController.layDanhSachNguoiDungController); // nhưng lấy danh sách người dùng
 
 module.exports = quanLyNguoiDungRouter;

@@ -49,3 +49,24 @@ GET http://localhost:3000/api/QuanLyNguoiDung/TimKiemNguoiDung?tuKhoa=bang
 ###
 //lấy danh sách người dùng phân trang
 GET http://localhost:3000/api/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang
+
+
+
+
+------------------------- Quan Ly Phim ------------------------------
+###
+//lấy danh sách banner
+GET http://localhost:3000/api/QuanLyPhim/LayDanhSachBanner
+
+###
+//lấy danh sách Phim
+GET http://localhost:3000/api/QuanLyPhim/LayDanhSachPhim?tenPhim=spider-man
+
+
+
+
+
+------------------------- Quan Ly Rap ------------------------------
+###
+//lấy danh sách Phim
+GET http://localhost:3000/api/QuanLyRap/LayThongTinCumRapTheoHeThong
