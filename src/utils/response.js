@@ -4,16 +4,7 @@ const moment = require('moment');
 
 const ReS = (code, data, message = "") => {
   const resp = { success: true };
-  
-  if (typeof data === "object")
-  {
-    content = {...data}
-  }
-  else
-  {
-    content = data;
-  }
-
+  content = data;
   if (message) {
     resp.message = message;
   }

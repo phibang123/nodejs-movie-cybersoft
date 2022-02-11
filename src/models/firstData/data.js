@@ -15,12 +15,14 @@ const fistData = () => {
 	  // LoaiNguoiDung
 		.then((result) => {
 			return LoaiNguoiDung.create({
-				LND_maLoaiNguoiDung: "KhachHang"
+				LND_maLoaiNguoiDung: "KhachHang",
+				LND_tenLoai: "Khách hàng"
 			});
 		})
 		.then((result) => {
 			return LoaiNguoiDung.create({
-				LND_maLoaiNguoiDung: "QuanTri"
+				LND_maLoaiNguoiDung: "QuanTri",
+				LND_tenLoai: "Quản trị"
 			});
 		})
 		//Phim

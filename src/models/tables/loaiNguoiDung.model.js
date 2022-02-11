@@ -16,20 +16,20 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING, //  
         primaryKey: true,
       },
-      createdAt: {
-        type: DataTypes.DATE,
-        field: "created_at"
+      LND_tenLoai: {
+        type: DataTypes.STRING, //  
+        get() {
+          const rawValue = this.getDataValue('LND_tenLoai');
+          return rawValue.toUpperCase()
+        }
       },
-      updatedAt: {
-        type: DataTypes.DATE,
-        field: "updated_at",
-      },
+     
     },
     {
       sequelize,
       modelName: "LoaiNguoiDung",
       tableName: "loaiNguoiDung",
-      timestamps: true, // Nếu false bỏ qua createdAt, updatedAt
+      timestamps: false, // Nếu false bỏ qua createdAt, updatedAt
     }
   );
 

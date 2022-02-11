@@ -1,4 +1,4 @@
-const { dangKy,dangNhap } = require("../services/quanLyNguoiDung.service");
+const { dangKy, dangNhap, loaiNguoiDung } = require("../services/quanLyNguoiDung.service");
 
 
 const dangKyControlelr = async (req, res) =>
@@ -6,7 +6,6 @@ const dangKyControlelr = async (req, res) =>
   const { taiKhoan, matKhau, email,soDt, hoTen } = req.body;
 
   try {
-    //const user = await NguoiDung.create({ email, password, role });
     await dangKy({ taiKhoan, matKhau, email, soDt, hoTen })
     return res.status(201).json(201, {taiKhoan,  email, soDt, hoTen});
   } catch (err)
@@ -38,7 +37,17 @@ const dangNhapController = async (req, res) =>
   }
 }
 
+const layDanhSachLoaiNguoiDungController = async (req, res) =>
+{
+  try {
+    let loaiND = await loaiNguoiDung();
+    return res.status(200).json(200, loaiND );
+  } catch (error) {
+    return res.status(400).json(400, error);
+  }
+}
 module.exports = {
   dangKyControlelr,
-  dangNhapController
+  dangNhapController,
+  layDanhSachLoaiNguoiDungController
 };

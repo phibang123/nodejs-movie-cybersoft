@@ -32,3 +32,9 @@ Content-Type: application/json
   "taiKhoan" : "bansg535",
   "matKhau": "1263222"
 }
+
+
+###
+//Lay Loai Nguoi Dung 
+get  http://localhost:3000/api/QuanLyNguoiDung/LayDanhSachLoaiNguoiDung
+

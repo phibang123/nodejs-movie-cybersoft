@@ -7,4 +7,6 @@ quanLyNguoiDungRouter.post("/DangKy", quanLyNguoiDungContronller.dangKyControlel
 
 quanLyNguoiDungRouter.post("/DangNhap", quanLyNguoiDungContronller.dangNhapController);
 
+quanLyNguoiDungRouter.get("/LayDanhSachLoaiNguoiDung", quanLyNguoiDungContronller.layDanhSachLoaiNguoiDungController);
+
 module.exports = quanLyNguoiDungRouter;
