@@ -13,9 +13,8 @@ app.use(reponseInterceptor);
 
 
 app.get("/ping", (req, res) => {
-  res.status(204).json(204, "OK");
+  res.status(200).json(200, "OK");
 });
-
 
 app.use("/api", rootRouter);
 

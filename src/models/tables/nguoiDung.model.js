@@ -25,67 +25,75 @@ module.exports = (sequelize) => {
 			},
 			ND_taiKhoan: {
 				type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-        UniqueConstraint: {
-          msg: "tài khoản dã tồn tại"
-        },
-        validate: {
+				allowNull: false,
+				validate: {
 					notNull: {
-            msg: "tai khoản không được bỏ trống",
-          },
-          
-        },
+						msg: "tai khoản không được bỏ trống",
+					},
+				},
+				unique: {
+					args: true,
+					msg: "Tài khoản dã tồn tại",
+				},
 			},
 			ND_hoTen: {
 				type: DataTypes.STRING,
-        collate: "utf8_unicode_ci",
-        allowNull: false,
-        validate: {
+				collate: "utf8_unicode_ci",
+				allowNull: false,
+				validate: {
 					notNull: {
-            msg: "họ tên không được bỏ trống",
-          },
+						msg: "họ tên không được bỏ trống",
+					},
 				},
 			},
 			ND_email: {
 				type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
+				allowNull: false,
 				validate: {
 					isEmail: {
 						msg: "Email không đúng định dạng!",
-          },
-          notNull: {
-            msg: "email không được bỏ trống",
-          },
+					},
+					notNull: {
+						msg: "email không được bỏ trống",
+					},
+				},
+				unique: {
+					args: true,
+					msg: "Email đã tồn tại",
 				},
 			},
-			ND_soDT: {
+			ND_soDt: {
 				type: DataTypes.INTEGER,
         allowNull: false,
-        unique: true,
-        validate: {
-          isNumeric: {
+				validate: {
+					isNumeric: {
 						msg: "số điện thoại không đúng định dạng",
-          },
-          notNull: {
-            msg: "số điện thoại không được bỏ trống",
-          },
-          
+					},
+					notNull: {
+						msg: "số điện thoại không được bỏ trống",
+					},
+				},
+				unique: {
+					args: true,
+					msg: "số điện thoại đã được sử dụng",
 				},
 			},
 			ND_matKhau: {
 				type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          // len: {
-          //   args: [6, 32],
-          //   msg: "mật khải phải dài hơn 6 ký tự và nhỏ hơn 32 kí tự"
-          // },
-          notNull: {
-            msg: "mật khẩu không được bỏ trống",
-          },
-        },
+				allowNull: false,
+				validate: {
+					// min: {
+					//   args: 6,
+					//   msg: "mật khẩu phải lớn hơn 5 kí tự"
+					// },
+					// max: {
+					//   args: 32,
+					//   msg: "mật khẩu phải nhỏ hơn 32 kí tự"
+					// },
+					notNull: {
+						msg: "mật khẩu không được bỏ trống",
+					},
+				},
 				set(value) {
 					const salt = bcrypt.genSaltSync();
 					const hash = bcrypt.hashSync(value, salt);

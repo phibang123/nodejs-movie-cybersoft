@@ -8,16 +8,20 @@ const ReS = (code, content, message = "") => {
   if (message) {
     resp.message = message;
   }
-  resp.statusCode = code;
+  if (code) {
+    resp.statusCode = code;
+  }
   resp.dateTime = moment().format();
-  return { statusCode ,content, ...resp };
+  resp.messageConstants = null;
+  return {  content, ...resp };
 };
 
 // hàm format kết quả trả về của API khi thất bại cho client
 const ReE = (code, err, message = "") => {
   const resp = { success: false };
-  let errors = [];
-
+  
+  resp.dateTime = moment().format();
+  resp.messageConstants = null;
   if (code) {
     resp.statusCode = code;
   }
@@ -25,16 +29,28 @@ const ReE = (code, err, message = "") => {
   if (message) {
     resp.message = message;
   }
-
-  if (Array.isArray(err) && err.length > 0) {
-    errors = err.map((e) => e.message);
-  } else if (typeof err === "object" && err.message) {
-    errors = [err.message];
-  } else {
-    errors = [err];
+  else
+  {
+    resp.message = "Không tìm thấy tài nguyên!";
   }
 
-  return { errors, ...resp };
+  // if (Array.isArray(err) && err.length > 0) {
+  //   errors = err.map((e) => e.message);
+  // } else if (typeof err === "object" && err.message) {
+  //   errors = [err.message];
+  // } else {
+  //   errors = [err];
+  // }
+  
+  if (Array.isArray(err) && err.length > 0) {
+    content = err.map((e) => e.message);
+  } else if (typeof err === "object" && err.message) {
+    content = err.message;
+  } else {
+    content = err;
+  }
+
+  return { content, ...resp };
 };
 
 module.exports = {

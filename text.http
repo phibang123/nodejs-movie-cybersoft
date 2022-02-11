@@ -15,10 +15,9 @@ POST  http://localhost:3000/api/QuanLyNguoiDung/DangKy
 Content-Type: application/json
 
 {
-  "taiKhoan": "bang1234",
-  "matKhau": "1234564",
-  "email": "phibang@gamil.com",
-  "soDt": "1212",
-  "maNhom": "GP01",
+  "taiKhoan": "bang113",
+  "matKhau": "123122",
+  "email": "phibang51@gmail.com",
+  "soDt": "1212162",
   "hoTen": "string"
 }
