@@ -119,15 +119,21 @@ const capNhapThongTinNguoiDungController = async (req, res) => {
 			hoTen,
 			maLoaiNguoiDung = "KhachHang",
 		} = req.body;
-		let userUpdate = await capNhapNguoiDung({
-			taiKhoan,
-			matKhau,
-			email,
-			soDt,
-			hoTen,
-			maLoaiNguoiDung,
-		});
-	} catch (error) {
+		console.log(req.user.id)
+		let userUpdate = await capNhapNguoiDung(
+			{
+				taiKhoan,
+				matKhau,
+				email,
+				soDt,
+				hoTen,
+				maLoaiNguoiDung,
+			},
+			 req.user.id
+		);
+	} catch (error)
+	{
+		console.log(error)
 		if (error.name === "SequelizeValidationError") {
 			return res.status(400).json(400, error.errors[0].message);
 		} else if (error.name === "SequelizeUniqueConstraintError") {
@@ -135,7 +141,7 @@ const capNhapThongTinNguoiDungController = async (req, res) => {
 		} else if (error.name === "SequelizeForeignKeyConstraintError") {
 			return res.status(400).json(400, "Loại người dùng không hợp lệ!");
 		} else {
-			return res.status(500).json(500, "BAD");
+			return res.status(500).json(500, error);
 		}
 	}
 };

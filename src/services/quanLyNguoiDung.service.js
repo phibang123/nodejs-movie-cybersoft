@@ -134,16 +134,17 @@ const themNguoiDung = async (data) => {
 	}
 };
 
-const capNhapNguoiDung = async (data) =>
+const capNhapNguoiDung = async (data,token) =>
 {
 	try {
 	  
-		let user = NguoiDung.findOne({
-			
+		let user = await NguoiDung.findOne({
 			where: {
-				ND_id: req.user?.id
-			}
+				ND_id: token
+			},
+			include: [{model: LoaiNguoiDung,as: "loaiNguoiDung",}]
 		})
+	
 		if (!data.taiKhoan)
 		{
 			throw new Error("Dữ liệu không hợp lệ!")
@@ -158,10 +159,10 @@ const capNhapNguoiDung = async (data) =>
 		  user.ND_hoTen = data.hoTen,
 			user.ND_email = data.email,
 			user.soDt = data.soDt,
-			user.LND_maLoaiNguoiDung = data.loaiNguoiDung	
+			user.LND_maLoaiNguoiDung = data.maLoaiNguoiDung	
 			let userUpdate = await user.save();
 
-			console.log(userUpdate)
+			console.log(JSON.stringify(userUpdate, null, 2));
 			return userUpdate
 		}
 	} catch (error) {

@@ -5,8 +5,9 @@ module.exports = (sequelize) => {
     static associate(db) {
       //khai báo các mối quan hệ ở đây
       //
-      this.belongsTo(db.ChiTietDatVe, {
-        foreignKey: "CTDV_id",
+      this.belongsTo(db.NguoiDung, {
+        as: "danhSachGhe",
+        foreignKey: "ND_id",
       })
       
     }
@@ -20,7 +21,7 @@ module.exports = (sequelize) => {
       LC_maLichChieu: {
         type: DataTypes.INTEGER
       },
-      CTDV_id: {
+      ND_id: {
         type: DataTypes.INTEGER
       },
       createdAt: {

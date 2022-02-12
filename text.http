@@ -59,8 +59,23 @@ accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4
 
 
 ###
-//Lthêm người dùng
+//thêm người dùng
 POST  http://localhost:3000/api/QuanLyNguoiDung/ThemNguoiDung
+accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4iOiJiYW5nIiwibG9haU5ndW9pRHVuZyI6IlF1YW5UcmkiLCJlbWFpbCI6ImJhbmdAZ21haWwuY29tIiwiaWF0IjoxNjQ0NjgwMTk4LCJleHAiOjE2NDQ3NjY1OTh9.VGmw14VeCRwNoh_ScK9hXuiRWa6hfP4XoC9TGJa3jQU
+Content-Type: application/json
+
+{
+  "taiKhoan": "bang10",
+  "matKhau": "1234597",
+  "email": "phibansg@gmail.com",
+  "soDt": "51212265",
+  "hoTen": "string",
+  "maLoaiNguoiDung": "QuanTri"
+}
+###
+
+//cập nhập thông tin 
+PUT  http://localhost:3000/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung
 accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4iOiJiYW5nIiwibG9haU5ndW9pRHVuZyI6IlF1YW5UcmkiLCJlbWFpbCI6ImJhbmdAZ21haWwuY29tIiwiaWF0IjoxNjQ0NjgwMTk4LCJleHAiOjE2NDQ3NjY1OTh9.VGmw14VeCRwNoh_ScK9hXuiRWa6hfP4XoC9TGJa3jQU
 Content-Type: application/json
 

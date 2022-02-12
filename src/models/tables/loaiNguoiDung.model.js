@@ -5,6 +5,7 @@ module.exports = (sequelize) => {
     static associate(db)
     {
       this.hasMany(db.NguoiDung, {
+        as: "loaiNguoiDung",
         foreignKey: "LND_maLoaiNguoiDung",
       })
     }
@@ -14,6 +15,7 @@ module.exports = (sequelize) => {
     {
       LND_maLoaiNguoiDung: {
         type: DataTypes.STRING, //  
+        unique: true,
         primaryKey: true,
       },
       LND_tenLoai: {

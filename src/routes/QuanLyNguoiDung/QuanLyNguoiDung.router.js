@@ -26,6 +26,6 @@ quanLyNguoiDungRouter.get("/ThongTinTaiKhoan", authenticate)
 
 quanLyNguoiDungRouter.post("/ThemNguoiDung", authenticate, authorize("QuanTri"), quanLyNguoiDungController.themNguoiDungController)
 
-quanLyNguoiDungRouter.put("/CapNhatThongTinNguoiDung", authenticate, quanLyNguoiDungController.themNguoiDungController)
+quanLyNguoiDungRouter.put("/CapNhatThongTinNguoiDung", authenticate, quanLyNguoiDungController.capNhapThongTinNguoiDungController)
 
 module.exports = quanLyNguoiDungRouter;

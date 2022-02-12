@@ -5,14 +5,9 @@ module.exports = (sequelize) => {
     static associate(db) {
       //khai báo các mối quan hệ ở đây
       this.belongsTo(db.LichChieuTheoPhim, {
-        foreignKey: "CR_maCumRap",
+        foreignKey: "LCTP_id",
       });
-      this.belongsTo(db.LichChieuTheoPhim, {
-        foreignKey: "P_maPhim",
-      });
-      this.belongsTo(db.LichChieuTheoPhim, {
-        foreignKey: "P_maRap",
-      });
+     
 
       //LichChieu N:M  Ghe
       this.belongsToMany(db.Ghe, {
@@ -29,15 +24,10 @@ module.exports = (sequelize) => {
         primaryKey: true,
         autoIncrement: true
       },
-      P_maPhim: {
+      LCTP_id: {
         type: DataTypes.INTEGER, //  
       },
-      P_maRap: {
-        type: DataTypes.INTEGER, //  
-      },
-      CR_maCumRap: {
-        type: DataTypes.STRING
-      },
+   
       
       LC_ngayChieuGioiChieu: {
         type: DataTypes.DATE, //  

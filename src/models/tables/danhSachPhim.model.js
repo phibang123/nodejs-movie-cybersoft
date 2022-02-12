@@ -6,24 +6,28 @@ module.exports = (sequelize) => {
 
       this.belongsToMany(db.Rap, {
         through: db.LichChieuTheoPhim,
-        foreignKey: "P_maPhim",
+        foreignKey: "DSP_id",
       })
-      this.belongsToMany(db.Rap, {
-        through: db.LichChieuTheoPhim,
-        foreignKey: "CR_maCumRap",
-      })
+   
     }
   }
 
   DanhSachPhim.init(
     {
-      P_maPhim: {
+      DSP_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
+        allowNull: false
       },
+      P_maPhim: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      
       CR_maCumRap: {
         type: DataTypes.STRING, 
-        primaryKey: true,
+        allowNull: false
       },
       
       createdAt: {

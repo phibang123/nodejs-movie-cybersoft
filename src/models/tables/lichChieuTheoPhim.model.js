@@ -5,29 +5,28 @@ module.exports = (sequelize) => {
     static associate(db) {
       //khai báo các mối quan hệ ở đây
       this.hasMany(db.LichChieu, {
-        foreignKey: "P_maPhim",
+        foreignKey: "LCTP_id",
       })
-      this.hasMany(db.LichChieu, {
-        foreignKey: "R_maRap",
-      })
-      this.hasMany(db.LichChieu, {
-        foreignKey: "CR_maCumRap",
-      })
+     
     }
   }
 
   LichChieuTheoPhim.init(
     {
-      P_maPhim: {
+      LCTP_id: {
         type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false 
       },
       R_maRap: {
         type: DataTypes.INTEGER, //  
+        allowNull: false
       },
-      CR_maCumRap: {
-        type: DataTypes.STRING
+      DSP_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false
       },
-
 
       createdAt: {
         type: DataTypes.DATE,

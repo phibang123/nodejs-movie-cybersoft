@@ -11,7 +11,8 @@ module.exports = (sequelize) => {
 			});
 
 			// NguoiDung 1:N DatVe
-			this.hasMany(db.DatVe, {
+			this.hasOne(db.GheXuatChieu, {
+				as: "danhSachGhe",
 				foreignKey: "ND_id",
 			});
 		}
