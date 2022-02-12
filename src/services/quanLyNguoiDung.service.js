@@ -1,5 +1,5 @@
 const { NguoiDung, LoaiNguoiDung } = require("../models/root.model");
-const Sequelize = require('sequelize');
+const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const bcrypt = require("bcrypt");
 const { generateToken } = require("../utils/jwt");
@@ -14,14 +14,13 @@ const dangKy = async (data) => {
 	} = data;
 
 	try {
-		let user = await NguoiDung.create({
+		await NguoiDung.create({
 			ND_taiKhoan,
 			ND_hoTen,
 			ND_email,
 			ND_soDt,
 			ND_matKhau,
 		});
-		return user;
 	} catch (error) {
 		throw error;
 	}
@@ -70,7 +69,7 @@ const loaiNguoiDung = async () => {
 		});
 		return mapLND;
 	} catch (error) {
-		throw error;
+		throw new Error("BAD");
 	}
 };
 
@@ -82,8 +81,8 @@ const danhSachNguoiDung = async (data) => {
 					[Op.like]: `%${data}%`,
 				},
 			},
-			attributes: { exclude: ["ND_matKhau","ND_id"]},
-			raw: true
+			attributes: { exclude: ["ND_matKhau", "ND_id"] },
+			raw: true,
 		});
 		const mapND = danhSachND.map((nd) => {
 			return {
@@ -93,23 +92,80 @@ const danhSachNguoiDung = async (data) => {
 				soDt: nd.ND_soDt,
 				maLoaiNguoiDung: nd.LND_maLoaiNguoiDung,
 				createdAt: nd.createdAt,
-				updatedAt: nd.updatedAt
-			}
+				updatedAt: nd.updatedAt,
+			};
 		});
-		return mapND
-	} catch (error)
-	{
-		throw new error
+		return mapND;
+	} catch (error) {
+		throw new Error("BAD");
 	}
 };
 
-const danhSachNguoiDungPhanTrang = async (data) =>
-{
+const danhSachNguoiDungPhanTrang = async (data) => {
 	try {
 		let invalue = await NguoiDung.count();
-		console.log(invalue)
+		console.log(invalue);
 	} catch (error) {
-		
+		throw new Error("BAD");
+	}
+};
+
+const themNguoiDung = async (data) => {
+	try {
+		let {
+			taiKhoan: ND_taiKhoan,
+			matKhau: ND_matKhau,
+			email: ND_email,
+			soDt: ND_soDt,
+			hoTen: ND_hoTen,
+			maLoaiNguoiDung: LND_maLoaiNguoiDung,
+		} = data;
+
+		await NguoiDung.create({
+			ND_taiKhoan,
+			ND_hoTen,
+			ND_email,
+			ND_soDt,
+			ND_matKhau,
+			LND_maLoaiNguoiDung,
+		});
+	} catch (error) {
+		throw error;
+	}
+};
+
+const capNhapNguoiDung = async (data) =>
+{
+	try {
+	  
+		let user = NguoiDung.findOne({
+			
+			where: {
+				ND_id: req.user?.id
+			}
+		})
+		if (!data.taiKhoan)
+		{
+			throw new Error("Dữ liệu không hợp lệ!")
+		}
+		if (!user || user.ND_taiKhoan !== data.taiKhoan)
+		{
+			throw new Error("Bạn không có quyền thay đổi thông tin của người khác")
+		}
+		else
+		{
+			user.ND_matKhau = data.matKhau,
+		  user.ND_hoTen = data.hoTen,
+			user.ND_email = data.email,
+			user.soDt = data.soDt,
+			user.LND_maLoaiNguoiDung = data.loaiNguoiDung	
+			let userUpdate = await user.save();
+
+			console.log(userUpdate)
+			return userUpdate
+		}
+	} catch (error) {
+		throw error;
 	}
 }
 module.exports = {
@@ -117,5 +173,7 @@ module.exports = {
 	dangNhap: dangNhap,
 	loaiNguoiDung,
 	danhSachNguoiDung,
-	danhSachNguoiDungPhanTrang
+	danhSachNguoiDungPhanTrang,
+	themNguoiDung,
+	capNhapNguoiDung
 };

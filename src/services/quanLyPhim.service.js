@@ -1,6 +1,5 @@
 const { Banner , Phim} = require("../models/root.model");
 const Sequelize = require("sequelize");
-const { where } = require("sequelize");
 const Op = Sequelize.Op;
 
 const layBanner = async (data) => {
@@ -17,14 +16,13 @@ const layBanner = async (data) => {
 
 		return banner;
 	} catch (error) {
-		throw error;
+		throw new Error("BAD");
 	}
 };
 
 const layPhim = async (data) => {
   try
   {
-    console.log(123)
 		const allPhim = await Phim.findAll({
 			where: {
 				P_tenPhim: {
@@ -49,7 +47,7 @@ const layPhim = async (data) => {
 		});
 		return phim;
 	} catch (error) {
-		throw error;
+		throw new Error("BAD");
 	}
 };
 

@@ -4,7 +4,9 @@ const {
 	Phim,
 	Banner,
 	HeThongRap,
-	CumRap
+	CumRap,
+	Rap,
+	NguoiDung,
 } = require("../root.model");
 const yargs = require("yargs");
 const phimModel = require("../tables/phim.model");
@@ -12,19 +14,31 @@ const phimModel = require("../tables/phim.model");
 const fistData = () => {
 	sequelize
 		.sync({ force: true })
-	  // LoaiNguoiDung
+		// LoaiNguoiDung
 		.then((result) => {
 			return LoaiNguoiDung.create({
 				LND_maLoaiNguoiDung: "KhachHang",
-				LND_tenLoai: "Khách hàng"
+				LND_tenLoai: "Khách hàng",
 			});
 		})
+		// Tạo Quản Trị
 		.then((result) => {
 			return LoaiNguoiDung.create({
 				LND_maLoaiNguoiDung: "QuanTri",
-				LND_tenLoai: "Quản trị"
+				LND_tenLoai: "Quản trị",
 			});
 		})
+		.then((result) => {
+			return NguoiDung.create({
+				ND_taiKhoan: "bang",
+				ND_hoTen: "bang",
+				ND_email: "bang@gmail.com",
+				ND_soDt: "111111111",
+				ND_matKhau: "1234567",
+				LND_maLoaiNguoiDung: "QuanTri",
+			});
+		})
+
 		//Phim
 		.then((result) => {
 			return Phim.create({
@@ -92,38 +106,95 @@ const fistData = () => {
 			return CumRap.create({
 				CR_maCumRap: "cgv-aeon-binh-tan",
 				CR_tenCumRap: "CGV - Aeon Bình Tân",
-				CR_hinhAnh: "https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png",
-				CR_diaChi: "Tầng 3, TTTM Aeon Mall Bình Tân, Số 1 đường số 17A, khu phố 11, Bình Trị Đông B, Bình Tân",
-				HTR_maHeThongRap: "CGV"
+				CR_hinhAnh:
+					"https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png",
+				CR_diaChi:
+					"Tầng 3, TTTM Aeon Mall Bình Tân, Số 1 đường số 17A, khu phố 11, Bình Trị Đông B, Bình Tân",
+				HTR_maHeThongRap: "CGV",
 			});
 		})
 		.then((result) => {
 			return CumRap.create({
 				CR_maCumRap: "cgv-aeon-tan-phu",
 				CR_tenCumRap: "GV - Aeon Tân Phú",
-				CR_hinhAnh: "https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png",
+				CR_hinhAnh:
+					"https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png",
 				CR_diaChi: "30 Bờ Bao Tân Thắng, Sơn Kỳ, Tân Phú",
-				HTR_maHeThongRap: "CGV"
+				HTR_maHeThongRap: "CGV",
 			});
 		})
 		.then((result) => {
 			return CumRap.create({
 				CR_maCumRap: "lotte-cantavil",
 				CR_tenCumRap: "Lotte - Cantavil",
-				CR_hinhAnh: "https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png",
+				CR_hinhAnh:
+					"https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png",
 				CR_diaChi: "L7-Cantavil Premier, Xa Lộ Hà Nội, Q.2",
-				HTR_maHeThongRap: "LotteCinima"
+				HTR_maHeThongRap: "LotteCinima",
 			});
 		})
 		.then((result) => {
 			return CumRap.create({
 				CR_maCumRap: "lotte-diamond",
 				CR_tenCumRap: "Lotte - Diamond",
-				CR_hinhAnh: "https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png",
+				CR_hinhAnh:
+					"https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png",
 				CR_diaChi: "L13-Diamond Plaza, 34 Lê Duẩn, Q.1",
-				HTR_maHeThongRap: "LotteCinima"
+				HTR_maHeThongRap: "LotteCinima",
 			});
 		})
+		//rap
+		.then((result) => {
+			return Rap.create({
+				R_tenRap: "Rạp 1",
+				CR_maCumRap: "cgv-aeon-binh-tan",
+			});
+		})
+		.then((result) => {
+			return Rap.create({
+				R_tenRap: "Rạp 2",
+				CR_maCumRap: "cgv-aeon-binh-tan",
+			});
+		})
+		//
+		.then((result) => {
+			return Rap.create({
+				R_tenRap: "Rạp 1",
+				CR_maCumRap: "cgv-aeon-tan-phu",
+			});
+		})
+		.then((result) => {
+			return Rap.create({
+				R_tenRap: "Rạp 2",
+				CR_maCumRap: "cgv-aeon-tan-phu",
+			});
+		})
+		//
+		.then((result) => {
+			return Rap.create({
+				R_tenRap: "Rạp 1",
+				CR_maCumRap: "lotte-cantavil",
+			});
+		})
+		.then((result) => {
+			return Rap.create({
+				R_tenRap: "Rạp 2",
+				CR_maCumRap: "lotte-cantavil",
+			});
+		})
+		//
+		.then((result) => {
+			return Rap.create({
+				R_tenRap: "Rạp 1",
+				CR_maCumRap: "lotte-diamond",
+			});
+		})
+		.then((result) => {
+			return Rap.create({
+				R_tenRap: "Rạp 1",
+				CR_maCumRap: "lotte-diamond",
+			});
+		});
 };
 
 yargs.command({

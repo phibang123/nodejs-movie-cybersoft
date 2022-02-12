@@ -18,7 +18,6 @@ const generateToken = (user) =>
 
   return {
     accessToken,
-    expiresIn: EXPIRES_IN,
   };
 };
 

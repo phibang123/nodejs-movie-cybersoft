@@ -15,10 +15,10 @@ POST  http://localhost:3000/api/QuanLyNguoiDung/DangKy
 Content-Type: application/json
 
 {
-  "taiKhoan": "bansg535",
-  "matKhau": "1263222",
-  "email": "phibansg45751@gmail.com",
-  "soDt": "12121925",
+  "taiKhoan": "bang",
+  "matKhau": "1234567",
+  "email": "phibansg451@gmail.com",
+  "soDt": "121225",
   "hoTen": "string"
 }
 
@@ -29,8 +29,8 @@ POST  http://localhost:3000/api/QuanLyNguoiDung/DangNhap
 Content-Type: application/json
 
 {
-  "taiKhoan" : "bansg535",
-  "matKhau": "1263222"
+  "taiKhoan" : "bang",
+  "matKhau": "1234567"
 }
 
 
@@ -52,6 +52,27 @@ GET http://localhost:3000/api/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang
 
 
 
+###
+//Lấy Thông tin tài khoản
+get http://localhost:3000/api/QuanLyNguoiDung/ThongTinTaiKhoan
+accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4iOiJiYW5zZzUzNSIsImxvYWlOZ3VvaUR1bmciOiJLaGFjaEhhbmciLCJlbWFpbCI6InBoaWJhbnNnNDU3NTFAZ21haWwuY29tIiwiaWF0IjoxNjQ0Njc3OTY3LCJleHAiOjE2NDQ3NjQzNjd9.X05t6_rJyRRMDV5JQjJPbeVJcstDWpCIDR-FwElWKPE
+
+
+###
+//Lthêm người dùng
+POST  http://localhost:3000/api/QuanLyNguoiDung/ThemNguoiDung
+accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4iOiJiYW5nIiwibG9haU5ndW9pRHVuZyI6IlF1YW5UcmkiLCJlbWFpbCI6ImJhbmdAZ21haWwuY29tIiwiaWF0IjoxNjQ0NjgwMTk4LCJleHAiOjE2NDQ3NjY1OTh9.VGmw14VeCRwNoh_ScK9hXuiRWa6hfP4XoC9TGJa3jQU
+Content-Type: application/json
+
+{
+  "taiKhoan": "bang10",
+  "matKhau": "1234597",
+  "email": "phibansg@gmail.com",
+  "soDt": "51212265",
+  "hoTen": "string",
+  "maLoaiNguoiDung": "QuanTri"
+}
+###
 
 ------------------------- Quan Ly Phim ------------------------------
 ###
@@ -68,5 +89,10 @@ GET http://localhost:3000/api/QuanLyPhim/LayDanhSachPhim?tenPhim=spider-man
 
 ------------------------- Quan Ly Rap ------------------------------
 ###
-//lấy danh sách Phim
-GET http://localhost:3000/api/QuanLyRap/LayThongTinCumRapTheoHeThong
+//lấy thông tin hệ thống rạp
+GET http://localhost:3000/api/QuanLyRap/LayThongTinHeThongRap?maHeThongRap=CGV
+
+
+###
+//lấy tông tin cụm rạp theo hệ thống
+GET http://localhost:3000/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=CGV

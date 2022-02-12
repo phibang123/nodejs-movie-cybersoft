@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
     static associate(db)
     {
       this.belongsTo(db.CumRap, {
-        as: "rap",
+        as: "danhSachRap",
         foreignKey: "CR_maCumRap",
       });
       this.belongsToMany(db.DanhSachPhim, {

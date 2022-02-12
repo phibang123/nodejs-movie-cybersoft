@@ -9,6 +9,7 @@ module.exports = (sequelize) => {
         foreignKey: "HTR_maHeThongRap",
       });
       this.hasMany(db.Rap, {
+        as: "danhSachRap",
         foreignKey: "CR_maCumRap"
       })
       this.belongsToMany(db.Phim, {
