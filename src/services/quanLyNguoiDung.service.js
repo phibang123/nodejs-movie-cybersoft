@@ -1,4 +1,10 @@
-const { NguoiDung, LoaiNguoiDung } = require("../models/root.model");
+const {
+	NguoiDung,
+	LoaiNguoiDung,
+	GheXuatChieu,
+	LichChieu,
+	DatVe,
+} = require("../models/root.model");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const bcrypt = require("bcrypt");
@@ -49,10 +55,11 @@ const dangNhap = async (data) => {
 				...token,
 			};
 		} else {
-			throw new Error("Tài Khoản và mật khẩu không chình xác");
+			throw new Error("Tài Khoản và mật khẩu không chính xác");
 		}
 	} catch (error) {
-		throw new Error("Tài Khoản và mật khẩu không chình xác");
+		console.log(error);
+		throw new Error("Tài Khoản và mật khẩu không chính xác");
 	}
 };
 
@@ -134,41 +141,100 @@ const themNguoiDung = async (data) => {
 	}
 };
 
-const capNhapNguoiDung = async (data,token) =>
-{
+const capNhapNguoiDung = async (data, token) => {
 	try {
-	  
 		let user = await NguoiDung.findOne({
 			where: {
-				ND_id: token
+				ND_id: token,
 			},
-			include: [{model: LoaiNguoiDung,as: "loaiNguoiDung",}]
-		})
-	
-		if (!data.taiKhoan)
-		{
-			throw new Error("Dữ liệu không hợp lệ!")
+			include: [{ model: LoaiNguoiDung, as: "loaiNguoiDung" }],
+		});
+
+		if (!data.taiKhoan) {
+			throw new Error("Dữ liệu không hợp lệ!");
 		}
-		if (!user || user.ND_taiKhoan !== data.taiKhoan)
-		{
-			throw new Error("Bạn không có quyền thay đổi thông tin của người khác")
-		}
-		else
-		{
-			user.ND_matKhau = data.matKhau,
-		  user.ND_hoTen = data.hoTen,
-			user.ND_email = data.email,
-			user.soDt = data.soDt,
-			user.LND_maLoaiNguoiDung = data.maLoaiNguoiDung	
+		if (!user || user.ND_taiKhoan !== data.taiKhoan) {
+			throw new Error("Bạn không có quyền thay đổi thông tin của người khác");
+		} else {
+			(user.ND_matKhau = data.matKhau),
+				(user.ND_hoTen = data.hoTen),
+				(user.ND_email = data.email),
+				(user.soDt = data.soDt),
+				(user.LND_maLoaiNguoiDung = data.maLoaiNguoiDung);
 			let userUpdate = await user.save();
 
-			console.log(JSON.stringify(userUpdate, null, 2));
-			return userUpdate
+			//console.log(JSON.stringify(userUpdate, null, 2));
+
+			let [userUpdated] = [userUpdate].map((user) => {
+				return {
+					taiKhoan: user.ND_taiKhoan,
+					hoTen: user.ND_hoTen,
+					email: user.ND_email,
+					soDt: user.ND_soDt,
+					loaiNguoiDung: user.loaiNguoiDung.LND_tenLoai,
+					thongTinDatVe: null,
+				};
+			});
+			return userUpdated;
 		}
 	} catch (error) {
 		throw error;
 	}
-}
+};
+
+const xoaNguoiDung = async (data) => {
+	try {
+		let user = await NguoiDung.findOne({
+			include: [{ model: DatVe, as: "thongTinDatVe" }],
+			where: {
+				ND_taiKhoan: data,
+			},
+		});
+		//console.log(JSON.stringify(user, null, 2));
+		if (!user) {
+			throw new Error("Không tìm thấy người dùng");
+		}
+
+		if (user.thongTinDatVe[0]) {
+			throw new Error("Người dùng này đã đặt vé xem phim không thể xóa!");
+		} else {
+			await user.destroy();
+		}
+		//console.log(JSON.stringify(user, null, 2));
+	} catch (error) {
+		throw error;
+	}
+};
+
+const layThongTinTaiKhoan = async (data) => {
+	try {
+		let user = await NguoiDung.findOne({
+			include: [
+				{
+					model: DatVe,
+					as: "thongTinDatVe",
+					include: [
+						{
+							model: GheXuatChieu,
+							as: "thongTinVe",
+							include: [{ model: LichChieu, as: "gheLichChieu" }],
+						},
+					],
+				},
+			],
+			where: {
+				ND_taiKhoan: data,
+			},
+		});
+		if (!user) {
+			throw new Error("BAD");
+		}
+		console.log(JSON.stringify(user, null, 2));
+	} catch (error) {
+		throw error;
+	}
+};
+
 module.exports = {
 	dangKy: dangKy,
 	dangNhap: dangNhap,
@@ -176,5 +242,7 @@ module.exports = {
 	danhSachNguoiDung,
 	danhSachNguoiDungPhanTrang,
 	themNguoiDung,
-	capNhapNguoiDung
+	capNhapNguoiDung,
+	xoaNguoiDung,
+	layThongTinTaiKhoan,
 };

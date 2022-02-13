@@ -11,10 +11,19 @@ module.exports = (sequelize) => {
 			});
 
 			// NguoiDung 1:N DatVe
-			this.hasOne(db.GheXuatChieu, {
-				as: "danhSachGhe",
+			this.hasMany(db.DatVe, {
+				as: "thongTinDatVe",
 				foreignKey: "ND_id",
 			});
+
+			this.belongsToMany(db.LichChieu, {
+        through: db.GheXuatChieu,
+        foreignKey: "ND_id",
+			})
+			this.belongsToMany(db.Ghe, {
+        through: db.GheXuatChieu,
+        foreignKey: "ND_id",
+      })
 		}
 	}
 

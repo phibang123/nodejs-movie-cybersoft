@@ -6,6 +6,8 @@ const {
 	danhSachNguoiDungPhanTrang,
 	themNguoiDung,
 	capNhapNguoiDung,
+	xoaNguoiDung,
+	layThongTinTaiKhoan
 } = require("../services/quanLyNguoiDung.service");
 
 const dangKyControlelr = async (req, res) => {
@@ -34,7 +36,7 @@ const dangNhapController = async (req, res) => {
 		if (error === "BAD") {
 			return res.status(500).json(500, "serveice error");
 		}
-		return res.status(400).json(400, error.content);
+		return res.status(400).json(400, error);
 	}
 };
 
@@ -119,7 +121,7 @@ const capNhapThongTinNguoiDungController = async (req, res) => {
 			hoTen,
 			maLoaiNguoiDung = "KhachHang",
 		} = req.body;
-		console.log(req.user.id)
+		console.log(req.user.id);
 		let userUpdate = await capNhapNguoiDung(
 			{
 				taiKhoan,
@@ -129,11 +131,10 @@ const capNhapThongTinNguoiDungController = async (req, res) => {
 				hoTen,
 				maLoaiNguoiDung,
 			},
-			 req.user.id
+			req.user.id
 		);
-	} catch (error)
-	{
-		console.log(error)
+		return res.status(200).json(200, userUpdate);
+	} catch (error) {
 		if (error.name === "SequelizeValidationError") {
 			return res.status(400).json(400, error.errors[0].message);
 		} else if (error.name === "SequelizeUniqueConstraintError") {
@@ -145,6 +146,32 @@ const capNhapThongTinNguoiDungController = async (req, res) => {
 		}
 	}
 };
+
+const xoaNguoiDungController = async (req, res) => {
+	try {
+		let { TaiKhoan } = req.query;
+		await xoaNguoiDung(TaiKhoan);
+		return res.status(200).json(200, "Xóa thành công!");
+	} catch (error)
+	{
+		if (error === "BAD") {
+			return res.status(500).json(500, error);
+		}
+		return res.status(400).json(400, error);
+	}
+};
+
+const layThongTinTaiKhoanController = async (req, res) =>
+{
+	try {
+		let user = await layThongTinTaiKhoan(req.user.taiKhoan);
+	} catch (error) {
+		if (error === "BAD") {
+			return res.status(500).json(500, error);
+		}
+		return res.status(400).json(400, error);
+	}
+}
 module.exports = {
 	dangKyControlelr,
 	dangNhapController,
@@ -153,4 +180,6 @@ module.exports = {
 	layDanhSachNguoiDungPhanTranController,
 	themNguoiDungController,
 	capNhapThongTinNguoiDungController,
+	xoaNguoiDungController,
+	layThongTinTaiKhoanController
 };

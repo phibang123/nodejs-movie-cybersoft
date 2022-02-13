@@ -15,10 +15,10 @@ POST  http://localhost:3000/api/QuanLyNguoiDung/DangKy
 Content-Type: application/json
 
 {
-  "taiKhoan": "bang",
+  "taiKhoan": "bang1",
   "matKhau": "1234567",
-  "email": "phibansg451@gmail.com",
-  "soDt": "121225",
+  "email": "phibang@gmail.com",
+  "soDt": "1212275",
   "hoTen": "string"
 }
 
@@ -30,7 +30,7 @@ Content-Type: application/json
 
 {
   "taiKhoan" : "bang",
-  "matKhau": "1234567"
+  "matKhau": "1234597"
 }
 
 
@@ -65,9 +65,9 @@ accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4
 Content-Type: application/json
 
 {
-  "taiKhoan": "bang10",
+  "taiKhoan": "bang",
   "matKhau": "1234597",
-  "email": "phibansg@gmail.com",
+  "email": "phibansg9@gmail.com",
   "soDt": "51212265",
   "hoTen": "string",
   "maLoaiNguoiDung": "QuanTri"
@@ -76,18 +76,27 @@ Content-Type: application/json
 
 //cập nhập thông tin 
 PUT  http://localhost:3000/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung
-accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4iOiJiYW5nIiwibG9haU5ndW9pRHVuZyI6IlF1YW5UcmkiLCJlbWFpbCI6ImJhbmdAZ21haWwuY29tIiwiaWF0IjoxNjQ0NjgwMTk4LCJleHAiOjE2NDQ3NjY1OTh9.VGmw14VeCRwNoh_ScK9hXuiRWa6hfP4XoC9TGJa3jQU
+accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4iOiJiYW5nIiwibG9haU5ndW9pRHVuZyI6IlF1YW5UcmkiLCJlbWFpbCI6ImJhbmdAZ21haWwuY29tIiwiaWF0IjoxNjQ0Njk5OTE3LCJleHAiOjE2NDQ3ODYzMTd9._ugMs95uMUDn8UU1Chw729Cfq2VBdyyY2tRv_8DK9hU
 Content-Type: application/json
 
 {
-  "taiKhoan": "bang10",
+  "taiKhoan": "bang",
   "matKhau": "1234597",
-  "email": "phibansg@gmail.com",
+  "email": "phiban@gmail.com",
   "soDt": "51212265",
   "hoTen": "string",
   "maLoaiNguoiDung": "QuanTri"
 }
+
+
 ###
+
+//xóa người dùng
+
+DELETE   http://localhost:3000/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=loi
+accessToken:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4iOiJiYW5nIiwibG9haU5ndW9pRHVuZyI6IlF1YW5UcmkiLCJlbWFpbCI6InBoaWJhbkBnbWFpbC5jb20iLCJpYXQiOjE2NDQ3Njk2MzAsImV4cCI6MTY0NDg1NjAzMH0.8Wbra-DrLQzK8D0ZcA5eDp8V8WfeDoqm36-S7XZuLWE
+
+
 
 ------------------------- Quan Ly Phim ------------------------------
 ###

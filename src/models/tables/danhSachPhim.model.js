@@ -18,7 +18,6 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        allowNull: false
       },
       P_maPhim: {
         type: DataTypes.INTEGER,
@@ -40,6 +39,7 @@ module.exports = (sequelize) => {
       },
     },
     {
+    
       sequelize,
       modelName: "DanhSachPhim",
       tableName: "danhSachPhim",

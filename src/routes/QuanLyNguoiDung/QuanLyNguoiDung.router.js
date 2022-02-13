@@ -21,11 +21,15 @@ quanLyNguoiDungRouter.get("/TimKiemNguoiDung", quanLyNguoiDungController.layDanh
 
 
 //delay
-quanLyNguoiDungRouter.get("/ThongTinTaiKhoan", authenticate)
+quanLyNguoiDungRouter.get("/ThongTinTaiKhoan", authenticate, quanLyNguoiDungController.layThongTinTaiKhoanController)
 //
 
 quanLyNguoiDungRouter.post("/ThemNguoiDung", authenticate, authorize("QuanTri"), quanLyNguoiDungController.themNguoiDungController)
 
 quanLyNguoiDungRouter.put("/CapNhatThongTinNguoiDung", authenticate, quanLyNguoiDungController.capNhapThongTinNguoiDungController)
+
+quanLyNguoiDungRouter.post("/CapNhatThongTinNguoiDung", authenticate, quanLyNguoiDungController.capNhapThongTinNguoiDungController)
+
+quanLyNguoiDungRouter.delete("/XoaNguoiDung", authenticate, authorize("QuanTri") , quanLyNguoiDungController.xoaNguoiDungController)
 
 module.exports = quanLyNguoiDungRouter;
