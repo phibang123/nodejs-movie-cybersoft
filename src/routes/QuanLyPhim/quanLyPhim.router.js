@@ -7,4 +7,6 @@ quanLyPhimRouter.get("/LayDanhSachBanner", quanLyPhimController.layDanhSachBaner
 
 quanLyPhimRouter.get("/LayDanhSachPhim", quanLyPhimController.layDanhSachPhim);
 
+quanLyPhimRouter.get("/LayThongTinPhim", quanLyPhimController.layThongTinPhim);
+
 module.exports = quanLyPhimRouter;

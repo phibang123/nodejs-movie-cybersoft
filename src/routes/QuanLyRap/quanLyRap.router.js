@@ -6,9 +6,9 @@ quanLyRapRouter.get("/LayThongTinHeThongRap", quanLyRapController.layThongTinHeT
 
 quanLyRapRouter.get("/LayThongTinCumRapTheoHeThong", quanLyRapController.layThongTinCumRapTheoHeThong);
 
-//delay
 quanLyRapRouter.get("/LayThongTinLichChieuHeThongRap", quanLyRapController.layThongTinLichChieuController);
 
+//delay
 quanLyRapRouter.get("/LayThongTinLichChieuPhim", quanLyRapController.layThongTinLichChieuPhimController);
 
 module.exports = quanLyRapRouter;

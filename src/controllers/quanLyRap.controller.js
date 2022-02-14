@@ -55,7 +55,8 @@ const layThongTinLichChieuPhimController = async (req, res) =>
   try
   {
     let { maPhim } = req.query;
-    let thongTin = await layThongTinLichChieuTheoPhim(maPhim)
+    let thongTin = await layThongTinLichChieuTheoPhim(maPhim);
+    return res.status(200).json(200, thongTin);
   } catch (error) {
     if (error === "BAD")
     {

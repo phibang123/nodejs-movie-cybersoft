@@ -16,14 +16,7 @@ module.exports = (sequelize) => {
 				foreignKey: "ND_id",
 			});
 
-			this.belongsToMany(db.LichChieu, {
-        through: db.GheXuatChieu,
-        foreignKey: "ND_id",
-			})
-			this.belongsToMany(db.Ghe, {
-        through: db.GheXuatChieu,
-        foreignKey: "ND_id",
-      })
+			
 		}
 	}
 

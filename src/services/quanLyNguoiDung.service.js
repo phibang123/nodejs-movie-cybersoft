@@ -220,7 +220,11 @@ const layThongTinTaiKhoan = async (data) => {
 							include: [{ model: LichChieu, as: "gheLichChieu" }],
 						},
 					],
+					attributes: [
+						[sequelize.literal('"thongTinVe"."birthdate"'), 'birthdate']
+				],
 				},
+				
 			],
 			where: {
 				ND_taiKhoan: data,

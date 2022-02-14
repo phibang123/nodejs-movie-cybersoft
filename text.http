@@ -109,6 +109,11 @@ GET http://localhost:3000/api/QuanLyPhim/LayDanhSachPhim?tenPhim=spider-man
 
 
 
+###
+//lấy thông tin phim
+GET http://localhost:3000/api/QuanLyPhim/LayDanhSachPhim?tenPhim=spider-man
+
+
 
 
 ------------------------- Quan Ly Rap ------------------------------
