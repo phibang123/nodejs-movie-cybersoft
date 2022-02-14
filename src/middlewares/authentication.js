@@ -54,9 +54,8 @@ const authorize =
     const isAllow = allowRoles.some((item) => item === loaiNguoiDung);
 
     if (!isAllow) {
-      res.status(403).json(403, "Forbidden");
+      return res.status(403).json(403, "Forbidden");
     }
-
     next();
   };
 

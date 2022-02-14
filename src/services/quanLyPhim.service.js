@@ -1,4 +1,4 @@
-const { Banner, Phim } = require("../models/root.model");
+const { Banner, Phim, DanhSachPhim } = require("../models/root.model");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
@@ -68,17 +68,49 @@ const layThongTinPhimTheoMa = async (data) => {
 				sapChieu: ttp.P_sapChieu,
 				tenPhim: ttp.P_tenPhim,
 				trailer: ttp.P_trailer,
-			
 			};
 		});
-		return thongTinPhim
-	} catch (error)
-	{
-		throw error
+		return thongTinPhim;
+	} catch (error) {
+		throw error;
 	}
 };
+
+const xoaPhim = async (data) => {
+	try {
+		// await LichChieu.destroy({
+		// 	where: {
+		// 		P_maPhim: data,
+		// 	},
+		// });
+		await Banner.destroy({
+			where: {
+				P_maPhim: data,
+			},
+		});
+		await Phim.destroy({
+			where: {
+				P_maPhim: data,
+			},
+		});
+		// await DanhSachPhim.destroy({
+		// 	where: {
+		// 		P_maPhim: data,
+		// 	},
+		// });
+		// console.log(danhSachP)
+		// await danhSachP.destroy()
+		// await banner.destroy()
+		// await phim.destroy()
+	} catch (error) {
+		console.log(error);
+		throw error;
+	}
+};
+
 module.exports = {
 	layBanner,
 	layPhim,
 	layThongTinPhimTheoMa,
+	xoaPhim,
 };

@@ -34,12 +34,11 @@ module.exports = (sequelize) => {
       },
       P_maPhim: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: true
       },
       
       CR_maCumRap: {
         type: DataTypes.STRING, 
-        allowNull: false
       },
       
       createdAt: {

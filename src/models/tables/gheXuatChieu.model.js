@@ -40,6 +40,10 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         unique: false
       },
+      DV_giaGhe: {
+        type: DataTypes.INTEGER,
+        defaultValue: 70000
+      },
       createdAt: {
         type: DataTypes.DATE,
         field: "created_at"

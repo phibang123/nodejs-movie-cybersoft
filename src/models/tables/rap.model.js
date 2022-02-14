@@ -15,6 +15,7 @@ module.exports = (sequelize) => {
 
 
       this.hasMany(db.LichChieu, {
+        as: "rapChieuTheoPhim",
         foreignKey: "R_maRap"
       })
     }

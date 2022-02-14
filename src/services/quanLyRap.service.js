@@ -73,39 +73,46 @@ const layThongTinLichChieu = async (data) => {
 			where: {
 				HTR_maHeThongRap: data,
 			},
+		});
+
+		let cumRap = await CumRap.findAll({
+			where: {
+				HTR_maHeThongRap: data,
+			},
 			include: [
 				{
-					model: CumRap,
-					as: "cumRap",
+					model: DanhSachPhim,
 					include: [
 						{
-							model: DanhSachPhim,
-							include: [
-								{
-									model: LichChieu,
-									include: { model: Rap },
-									as: "phimChieuRap",
-								},
-								{ model: Phim },
-							],
+							model: LichChieu,
+							include: { model: Rap },
+							as: "phimChieuRap",
 						},
+						{ model: Phim },
 					],
+					where: {
+            P_maPhim: {
+              // "$eq" changes to "[Op.eq]"
+              [Op.ne]: null
+            }
+        }
 				},
-			],
-		});
-		console.log(JSON.stringify(thongTinRap, null, 2));
+			]
+			
+		})
+		//console.log(JSON.stringify(cumRap, null, 2));
 		let [mapHeThong] = [thongTinRap].map((ht) => {
 			return {
 				logo: ht.HTR_logo,
 				maHeThongRap: ht.HTR_maHeThongRap,
 				tenHeThongRap: ht.HTR_tenHeThongRap,
-				lstCumRap: ht.cumRap.map((cr) => {
+				lstCumRap: cumRap.map((cr) => {
 					return {
 						diaChi: cr.CR_diaChi,
 						hinhAnh: cr.CR_hinhAnh,
 						maCumRap: cr.CR_maCumRap,
 						tenCumRap: cr.CR_tenCumRap,
-						danhSachPhim: cr.DanhSachPhims.map((p) => {
+						danhSachPhim:  cr.DanhSachPhims.map((p) => {
 							return {
 								dangChieu: p.Phim.P_dangChieu,
 								hinhAnh: p.Phim.P_hinhAnh,
@@ -114,7 +121,7 @@ const layThongTinLichChieu = async (data) => {
 								sapChieu: p.Phim.P_sapChieu,
 								tenPhim: p.Phim.P_tenPhim,
 
-								lstLichChieuTheoPhim: p.phimChieuRap.map((lc) => {
+								lstLichChieuTheoPhim: p?.phimChieuRap.map((lc) => {
 									return {
 										maLichChieu: lc.LC_maLichChieu,
 										giaVe: lc.LC_giaVe,

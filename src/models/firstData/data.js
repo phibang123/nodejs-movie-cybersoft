@@ -85,13 +85,13 @@ const fistData = () => {
 			});
 		})
 		//banner
-		.then((result) => {
-			return Banner.create({
-				B_hinhAnh:
-					"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flickr.com%2Fphotos%2Fnamfullbuster%2F48241717707&psig=AOvVaw0YM5E3SJ43ov68x-32-1fS&ust=1644338062041000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJj0rOOC7vUCFQAAAAAdAAAAABAD",
-				P_maPhim: 1,
-			});
-		})
+		// .then((result) => {
+		// 	return Banner.create({
+		// 		B_hinhAnh:
+		// 			"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flickr.com%2Fphotos%2Fnamfullbuster%2F48241717707&psig=AOvVaw0YM5E3SJ43ov68x-32-1fS&ust=1644338062041000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJj0rOOC7vUCFQAAAAAdAAAAABAD",
+		// 		P_maPhim: 1,
+		// 	});
+		// })
 		.then((result) => {
 			return Banner.create({
 				B_hinhAnh:

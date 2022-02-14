@@ -1,4 +1,4 @@
-const { Model, DataTypes, Sequelize } = require("sequelize");
+const { Model, DataTypes, Sequelize , LichChieu} = require("sequelize");
 
 module.exports = (sequelize) => {
   class Ghe extends Model {
@@ -31,17 +31,48 @@ module.exports = (sequelize) => {
       G_tenGhe: {
         type: DataTypes.STRING, 
         collate: 'utf8_unicode_ci', 
-        allowNull: false
+       
       },
+      // G_giaMD: {
+      //   type: DataTypes.INTEGER, 
+      //   allowNull: false,
+      // },
       G_loaiGhe: {
         type: DataTypes.STRING, 
         collate: 'utf8_unicode_ci', 
-        allowNull: false
+        allowNull: false,
+        // set(value)
+        // {
+        //   if (value === "Vip")
+        //   {
+        //     let giaLichChieu = LichChieu.getDataValue("LC_giaVe");
+
+        //     this.setDataValue('G_giaVe', giaLichChieu * 1.25);
+        //   }
+        //   this.setDataValue('G_giaVe', giaLichChieu);
+        // }
       },
+    
       G_stt: {
-        type: DataTypes.INTEGER, 
+        type: DataTypes.STRING, 
+        set(value)
+        {
+          if (value < 10)
+          {
+            this.setDataValue("G_stt","0"+ value);
+          }
+          else
+          {
+            this.setDataValue("G_stt", value)
+          }
+				},
       },
       
+      // G_giaVe: {
+      //   type: DataTypes.INTEGER, 
+        
+      // },
+
       createdAt: {
         type: DataTypes.DATE,
         field: "created_at"

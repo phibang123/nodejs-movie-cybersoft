@@ -9,7 +9,8 @@ module.exports = (sequelize) => {
         as: "phimChieuRap",
         foreignKey: "DSP_id"
 			})
-			this.belongsTo(db.Rap, {
+      this.belongsTo(db.Rap, {
+        as: "rapChieuTheoPhim",
         foreignKey: "R_maRap"
 			})
 
@@ -58,7 +59,7 @@ module.exports = (sequelize) => {
       },
       LC_giaVe: {
         type: DataTypes.FLOAT, //  
-        defaultValue: 7.000
+        defaultValue: 7000,
       },
       LC_thoiLuong: {
         type: DataTypes.INTEGER,

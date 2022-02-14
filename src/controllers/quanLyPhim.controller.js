@@ -1,4 +1,4 @@
-const { layBanner, layPhim,layThongTinPhimTheoMa } = require("../services/quanLyPhim.service");
+const { layBanner, layPhim,layThongTinPhimTheoMa, xoaPhim } = require("../services/quanLyPhim.service");
 
 const layDanhSachBaner = async (req, res) => {
 	try {
@@ -25,7 +25,6 @@ const layDanhSachPhim = async (req, res) => {
 };
 
 
-
 const layThongTinPhim = async (req, res) => {
 	try {
 		let { maPhim } = req.query;
@@ -38,8 +37,23 @@ const layThongTinPhim = async (req, res) => {
 		return res.status(400).json(400, error.content);
 	}
 };
+
+const xoaPhimController = async (req, res) =>
+{
+	try {
+		let { maPhim } = req.query;
+		await xoaPhim(maPhim);
+		return res.status(200).json(200, "Xóa thành công!");
+	} catch (error) {
+			if (error === "BAD") {
+			return res.status(500).json(500, "serveice error");
+		}
+		return res.status(400).json(400, error.content);
+	}
+}
 module.exports = {
 	layDanhSachBaner,
 	layDanhSachPhim,
-	layThongTinPhim
+	layThongTinPhim,
+	xoaPhimController
 };

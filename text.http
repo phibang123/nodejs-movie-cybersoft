@@ -29,7 +29,7 @@ POST  http://localhost:3000/api/QuanLyNguoiDung/DangNhap
 Content-Type: application/json
 
 {
-  "taiKhoan" : "loi",
+  "taiKhoan" : "bang",
   "matKhau": "1234567"
 }
 
@@ -111,7 +111,14 @@ GET http://localhost:3000/api/QuanLyPhim/LayDanhSachPhim?tenPhim=spider-man
 
 ###
 //lấy thông tin phim
-GET http://localhost:3000/api/QuanLyPhim/LayDanhSachPhim?tenPhim=spider-man
+GET http://localhost:3000/api/QuanLyPhim//LayThongTinPhim?maPhim=1
+
+
+###
+//xóa phim
+GET http://localhost:3000/api/QuanLyPhim/XP?maPhim=1
+accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4iOiJiYW5nIiwibG9haU5ndW9pRHVuZyI6IlF1YW5UcmkiLCJlbWFpbCI6ImJhbmdAZ21haWwuY29tIiwiaWF0IjoxNjQ0ODU0MDM2LCJleHAiOjE2NDQ5NDA0MzZ9.IxzhTMeaNXmgxt6LuzbpDZO8ujEx4JSsNDZDsUVLTek
+
 
 
 
@@ -135,4 +142,12 @@ GET http://localhost:3000/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThong
 
 ###
 //lấy tông tin lich chiếu phim
-GET http://localhost:3000/api/QuanLyRap/LayThongTinLichChieuPhim?maPhim=1
+GET http://localhost:3000/api/QuanLyRap/LayThongTinLichChieuPhim?maPhim=2
+
+
+
+------------------------- Quan Dat Ve ------------------------------
+
+###
+//lấy danh sách phòng vé
+GET http://localhost:3000/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=1
