@@ -7,6 +7,7 @@ module.exports = (sequelize) => {
 
       // HeThongRap 1:N CumRap
       this.hasMany(db.CumRap, {
+        as: "cumRap",
         foreignKey: "HTR_maHeThongRap",
       });
     }

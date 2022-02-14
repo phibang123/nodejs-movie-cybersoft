@@ -4,9 +4,18 @@ module.exports = (sequelize) => {
   class LichChieu extends Model {
     static associate(db) {
       //khai báo các mối quan hệ ở đây
-      this.belongsTo(db.LichChieuTheoPhim, {
-        foreignKey: "LCTP_id",
-      });
+
+      this.belongsTo(db.DanhSachPhim, {
+        as: "phimChieuRap",
+        foreignKey: "DSP_id"
+			})
+			this.belongsTo(db.Rap, {
+        foreignKey: "R_maRap"
+			})
+
+      // this.belongsTo(db.LichChieuTheoPhim, {
+      //   foreignKey: "LCTP_id",
+      // });
      
       this.hasMany(db.GheXuatChieu, {
         as: "gheLichChieu",
@@ -35,10 +44,12 @@ module.exports = (sequelize) => {
         primaryKey: true,
         autoIncrement: true
       },
-      LCTP_id: {
+      DSP_id: {
         type: DataTypes.INTEGER, //  
       },
-   
+      R_maRap: {
+        type: DataTypes.INTEGER, //  
+      },
       
       LC_ngayChieuGioiChieu: {
         type: DataTypes.DATE, //  

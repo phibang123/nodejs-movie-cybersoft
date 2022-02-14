@@ -260,23 +260,24 @@ const fistData = () => {
 			});
 		})
 		//Lich chiếu theo phim
-		.then((result) => {
-			return LichChieuTheoPhim.create({
-				R_maRap: 1,
-				DSP_id: 1,
-			});
-		})
-		.then((result) => {
-			return LichChieuTheoPhim.create({
-				R_maRap: 2,
-				DSP_id: 1,
-			});
-		})
+		// .then((result) => {
+		// 	return LichChieuTheoPhim.create({
+		// 		R_maRap: 1,
+		// 		DSP_id: 1,
+		// 	});
+		// })
+		// .then((result) => {
+		// 	return LichChieuTheoPhim.create({
+		// 		R_maRap: 2,
+		// 		DSP_id: 1,
+		// 	});
+		// })
 
 		//LichChieu
 		.then((result) => {
 			return LichChieu.create({
-				LCTP_id: 1,
+				R_maRap: 1,
+				DSP_id: 1,
 				LC_ngayChieuGioiChieu: "2022-02-22T22:54:07",
 				LC_giaVe: 70000,
 				LC_thoiLuong: 120,

@@ -29,8 +29,8 @@ POST  http://localhost:3000/api/QuanLyNguoiDung/DangNhap
 Content-Type: application/json
 
 {
-  "taiKhoan" : "bang",
-  "matKhau": "1234597"
+  "taiKhoan" : "loi",
+  "matKhau": "1234567"
 }
 
 
@@ -55,7 +55,8 @@ GET http://localhost:3000/api/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang
 ###
 //Lấy Thông tin tài khoản
 get http://localhost:3000/api/QuanLyNguoiDung/ThongTinTaiKhoan
-accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4iOiJiYW5zZzUzNSIsImxvYWlOZ3VvaUR1bmciOiJLaGFjaEhhbmciLCJlbWFpbCI6InBoaWJhbnNnNDU3NTFAZ21haWwuY29tIiwiaWF0IjoxNjQ0Njc3OTY3LCJleHAiOjE2NDQ3NjQzNjd9.X05t6_rJyRRMDV5JQjJPbeVJcstDWpCIDR-FwElWKPE
+accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFpS2hvYW4iOiJsb2kiLCJsb2FpTmd1b2lEdW5nIjoiS2hhY2hIYW5nIiwiZW1haWwiOiJiYW5nMTIzQGdtYWlsLmNvbSIsImlhdCI6MTY0NDc3MzY0MywiZXhwIjoxNjQ0ODYwMDQzfQ.hq2jOymM7Qk-x4VZau3AuTOaTOC73Sd_CaMAi0QI22U
+
 
 
 ###
@@ -90,11 +91,10 @@ Content-Type: application/json
 
 
 ###
-
 //xóa người dùng
-
 DELETE   http://localhost:3000/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=loi
 accessToken:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4iOiJiYW5nIiwibG9haU5ndW9pRHVuZyI6IlF1YW5UcmkiLCJlbWFpbCI6InBoaWJhbkBnbWFpbC5jb20iLCJpYXQiOjE2NDQ3Njk2MzAsImV4cCI6MTY0NDg1NjAzMH0.8Wbra-DrLQzK8D0ZcA5eDp8V8WfeDoqm36-S7XZuLWE
+
 
 
 
@@ -120,3 +120,14 @@ GET http://localhost:3000/api/QuanLyRap/LayThongTinHeThongRap?maHeThongRap=CGV
 ###
 //lấy tông tin cụm rạp theo hệ thống
 GET http://localhost:3000/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=CGV
+
+
+
+###
+//lấy tông tin hệ thống rạp chiếu
+GET http://localhost:3000/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=CGV
+
+
+###
+//lấy tông tin lich chiếu phim
+GET http://localhost:3000/api/QuanLyRap/LayThongTinLichChieuPhim?maPhim=1

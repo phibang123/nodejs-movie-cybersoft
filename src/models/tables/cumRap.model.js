@@ -15,7 +15,10 @@ module.exports = (sequelize) => {
       this.belongsToMany(db.Phim, {
         through: db.DanhSachPhim,
         foreignKey: "CR_maCumRap",
-      	as: "danhSachCumRapChieuPhim",
+      })
+
+      this.hasMany(db.DanhSachPhim, {
+        foreignKey: "CR_maCumRap"
       })
     }
   }

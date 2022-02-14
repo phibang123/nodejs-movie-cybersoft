@@ -12,7 +12,9 @@ module.exports = (sequelize) => {
       this.belongsToMany(db.CumRap, {
         through: db.DanhSachPhim,
         foreignKey: "P_maPhim",
-      	as: "danhSachPhimChieuCumRap",
+      })
+      this.hasMany(db.DanhSachPhim, {
+        foreignKey: "P_maPhim"
       })
     }
   }

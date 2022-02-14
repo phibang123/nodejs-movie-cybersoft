@@ -9,8 +9,13 @@ module.exports = (sequelize) => {
         foreignKey: "CR_maCumRap",
       });
       this.belongsToMany(db.DanhSachPhim, {
-        through: db.LichChieuTheoPhim,
+        through: db.LichChieu,
         foreignKey: "R_maRap",
+      })
+
+
+      this.hasMany(db.LichChieu, {
+        foreignKey: "R_maRap"
       })
     }
   }

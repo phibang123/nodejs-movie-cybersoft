@@ -5,10 +5,23 @@ module.exports = (sequelize) => {
     static associate(db) {
 
       this.belongsToMany(db.Rap, {
-        through: db.LichChieuTheoPhim,
+        through: db.LichChieu,
         foreignKey: "DSP_id",
       })
    
+
+      this.belongsTo(db.CumRap, {
+        foreignKey: "CR_maCumRap"
+      })
+      this.belongsTo(db.Phim, {
+        foreignKey: "P_maPhim"
+      })
+
+
+      this.hasMany(db.LichChieu, {
+        as: "phimChieuRap",
+        foreignKey: "DSP_id"
+      })
     }
   }
 

@@ -1,4 +1,4 @@
-const { layDanhSachHeThongRap, layCumRapHeThongRap } = require("../services/quanLyRap.service");
+const { layDanhSachHeThongRap, layCumRapHeThongRap ,layThongTinLichChieu , layThongTinLichChieuTheoPhim} = require("../services/quanLyRap.service");
 
 const layThongTinHeThongRap = async (req, res) =>
 {
@@ -34,8 +34,39 @@ const layThongTinCumRapTheoHeThong = async (req, res) =>
     return res.status(400).json(400, error.content);
   }
 }
+const layThongTinLichChieuController = async (req, res) =>
+{
+  try {
+    let { maHeThongRap } = req.query;
+    let thonTinLichChieu = await layThongTinLichChieu(maHeThongRap);
+    return res.status(200).json(200, thonTinLichChieu);
+  } catch (error) {
+    if (error === "BAD")
+    {
+      return res.status(500).json(500, "serveice error");
+    }
+    return res.status(400).json(400, error.content);
+  }
+}
 
+
+const layThongTinLichChieuPhimController = async (req, res) =>
+{
+  try
+  {
+    let { maPhim } = req.query;
+    let thongTin = await layThongTinLichChieuTheoPhim(maPhim)
+  } catch (error) {
+    if (error === "BAD")
+    {
+      return res.status(500).json(500, "serveice error");
+    }
+    return res.status(400).json(400, error.content);
+  }
+}
 module.exports = {
   layThongTinHeThongRap,
-  layThongTinCumRapTheoHeThong
+  layThongTinCumRapTheoHeThong,
+  layThongTinLichChieuController,
+  layThongTinLichChieuPhimController
 };
