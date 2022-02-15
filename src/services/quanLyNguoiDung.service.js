@@ -4,6 +4,13 @@ const {
 	GheXuatChieu,
 	LichChieu,
 	DatVe,
+	sequelize,
+	DanhSachPhim,
+	Phim,
+	Rap,
+	Ghe,
+	HeThongRap,
+	CumRap
 } = require("../models/root.model");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
@@ -209,32 +216,111 @@ const xoaNguoiDung = async (data) => {
 const layThongTinTaiKhoan = async (data) => {
 	try {
 		let user = await NguoiDung.findOne({
+			where: {
+				ND_id: data,
+			},
 			include: [
 				{
-					model: DatVe,
-					as: "thongTinDatVe",
+					model: LoaiNguoiDung,
+					as: "loaiNguoiDung",
+				},
+			],
+		});
+
+		let maPhimUser = await LichChieu.findAll({
+			include: [
+				{
+					model: GheXuatChieu,
+					as: "gheLichChieu",
 					include: [
 						{
-							model: GheXuatChieu,
+							model: DatVe,
 							as: "thongTinVe",
-							include: [{ model: LichChieu, as: "gheLichChieu" }],
+							where: {
+								ND_id: data,
+							},
+						},
+						{
+							model: Ghe,
+							as: "gheChieuPhim",
+						}
+					],
+				},
+				{
+					model: DanhSachPhim,
+					as: "phimChieuRap",
+					include: [
+						{
+							model: Phim,
 						},
 					],
-					attributes: [
-						[sequelize.literal('"thongTinVe"."birthdate"'), 'birthdate']
-				],
 				},
-				
+				{
+					model: Rap,
+					as: "rapChieuTheoPhim",
+					include: [{
+						model: CumRap,
+						as: "danhSachRap",
+						include: [{
+							model: HeThongRap,
+							as: "cumRap",
+						}]
+					}]
+				}
 			],
-			where: {
-				ND_taiKhoan: data,
-			},
+			// include: [{
+			// 	model: DanhSachPhim,
+			// 	as: "phimChieuRap",
+			// 	include: [{
+			// 		model: Phim,
+			// 	}]
+			// }]
 		});
 		if (!user) {
 			throw new Error("BAD");
 		}
-		console.log(JSON.stringify(user, null, 2));
+		//console.log(JSON.stringify(user, null, 2));
+
+		let filterPhim = maPhimUser.filter((mm) => mm.gheLichChieu[0] != null);
+
+		//console.log(JSON.stringify(filterPhim, null, 2));
+
+		let [thongTin] = [user].map((ur) => {
+			return {
+				email: ur.ND_email,
+				hoTen: ur.ND_hoTen,
+				loaiNguoiDung: ur.loaiNguoiDung.LND_tenLoai,
+				soDT: ur.ND_matKhau,
+				taiKhoan: ur.ND_taiKhoan,
+				thongTinDatVe: filterPhim.map((phim) => {
+					return {
+						giaVe: phim.LC_giaVe,
+						hinhAnh: phim.phimChieuRap.Phim.P_hinhAnh,
+						maVe: phim.gheLichChieu[0].thongTinVe.DV_maVe,
+						ngayDat: phim.gheLichChieu[0].thongTinVe.DV_ngayDat,
+						tenPhim: phim.phimChieuRap.Phim.P_tenPhim,
+						thoiLuongPhim: phim.LC_thoiLuong,
+						danhSachGhe: phim.gheLichChieu.map((ve) =>
+						{
+							return {
+								maCumRap: phim.rapChieuTheoPhim.R_tenRap,
+								maGhe: ve.DV_maVe,
+								maHeThongRap: phim.rapChieuTheoPhim.danhSachRap.HTR_maHeThongRap,
+								maRap: phim.rapChieuTheoPhim.R_maRap,
+								tenCumRap: phim.rapChieuTheoPhim.R_tenRap,
+								tenGhe: ve.gheChieuPhim.G_tenGhe,
+								tenHeThongRap: phim.rapChieuTheoPhim.danhSachRap.CR_tenCumRap,
+								tenRap: phim.rapChieuTheoPhim.R_tenRap,
+							}
+						})
+					};
+				}),
+			};
+		});
+		
+		return thongTin
 	} catch (error) {
+		console.log(error);
 		throw error;
 	}
 };

@@ -55,7 +55,7 @@ GET http://localhost:3000/api/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang
 ###
 //Lấy Thông tin tài khoản
 get http://localhost:3000/api/QuanLyNguoiDung/ThongTinTaiKhoan
-accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFpS2hvYW4iOiJsb2kiLCJsb2FpTmd1b2lEdW5nIjoiS2hhY2hIYW5nIiwiZW1haWwiOiJiYW5nMTIzQGdtYWlsLmNvbSIsImlhdCI6MTY0NDc3MzY0MywiZXhwIjoxNjQ0ODYwMDQzfQ.hq2jOymM7Qk-x4VZau3AuTOaTOC73Sd_CaMAi0QI22U
+accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFpS2hvYW4iOiJsb2kiLCJsb2FpTmd1b2lEdW5nIjoiS2hhY2hIYW5nIiwiZW1haWwiOiJiYW5nMTIzQGdtYWlsLmNvbSIsImlhdCI6MTY0NDg5Mzk4NSwiZXhwIjoxNjQ0OTgwMzg1fQ.Do18k44G3buEbQY6D8G8iJhN3h4uxGwt3WbL4T5Feyw
 
 
 
@@ -151,3 +151,25 @@ GET http://localhost:3000/api/QuanLyRap/LayThongTinLichChieuPhim?maPhim=2
 ###
 //lấy danh sách phòng vé
 GET http://localhost:3000/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=1
+
+
+
+###
+//tạo lịch chiếu
+POST  http://localhost:3000/api/QuanLyDatVe/TaoLichChieu
+Content-Type: application/json
+accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4iOiJiYW5nIiwibG9haU5ndW9pRHVuZyI6IlF1YW5UcmkiLCJlbWFpbCI6ImJhbmdAZ21haWwuY29tIiwiaWF0IjoxNjQ0ODk4MzI3LCJleHAiOjE2NDQ5ODQ3Mjd9.FD1iSnfTE4PWF_z0sndECHbnqEpRdi8u4qHRwuSSuFs
+
+{
+  "maPhim": 2,
+  "ngayChieuGioChieu": "2022-02-22 ",
+  "maRap": 1,
+  "giaVe": 500000
+}
+
+
+###
+//lấy danh sách phòng vé
+GET http://localhost:3000/api/QuanLyDatVe/DatVe
+
+

@@ -24,7 +24,7 @@ const authenticate = async (req, res, next) => {
     );
 
     if (error) {
-      res.status(401).json(401, error);
+      return res.status(401).json(401, error);
     }
 
     const payload = jwt.verify(token, config.secret_key);

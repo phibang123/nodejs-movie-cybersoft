@@ -11,7 +11,7 @@ const layThongTinHeThongRap = async (req, res) =>
     {
       return res.status(500).json(500, "serveice error");
     }
-    return res.status(400).json(400, error.content);
+    return res.status(400).json(400, error);
   }
 }
 const layThongTinCumRapTheoHeThong = async (req, res) =>
@@ -31,7 +31,7 @@ const layThongTinCumRapTheoHeThong = async (req, res) =>
     {
       return res.status(500).json(500, "serveice error");
     }
-    return res.status(400).json(400, error.content);
+    return res.status(400).json(400, error);
   }
 }
 const layThongTinLichChieuController = async (req, res) =>
@@ -45,7 +45,7 @@ const layThongTinLichChieuController = async (req, res) =>
     {
       return res.status(500).json(500, "serveice error");
     }
-    return res.status(400).json(400, error.content);
+    return res.status(400).json(400, error);
   }
 }
 
@@ -62,7 +62,7 @@ const layThongTinLichChieuPhimController = async (req, res) =>
     {
       return res.status(500).json(500, "serveice error");
     }
-    return res.status(400).json(400, error.content);
+    return res.status(400).json(400, error);
   }
 }
 module.exports = {

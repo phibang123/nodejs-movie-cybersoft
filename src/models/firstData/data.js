@@ -288,7 +288,7 @@ const fistData = () => {
 		.then((result) => {
 			for (let i = 1; i <= 200; i++) {
 				Ghe.create({
-					G_tenGhe: `Ghế ${i}`,
+					G_tenGhe: `${i}`,
 					G_loaiGhe: "Vip",
 					G_stt: i,
 				});
@@ -315,6 +315,7 @@ const fistData = () => {
 				GheXuatChieu.create({
 					G_maGhe: i,
 					LC_maLichChieu: 1,
+					GXC_giaGhe: 50000,
 				});
 			}
 		})
@@ -323,6 +324,7 @@ const fistData = () => {
 				G_maGhe: 1,
 				LC_maLichChieu: 1,
 				DV_maVe: 1,
+				
 			});
 		})
 		.then((result) => {

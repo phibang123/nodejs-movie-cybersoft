@@ -5,7 +5,7 @@ const quanLyDatVe = express.Router();
 
 quanLyDatVe.get("/LayDanhSachPhongVe", quanLyDatVeController.layDanhSachPhongVeController);
 
-
+quanLyDatVe.post("/TaoLichChieu", authenticate, authorize("QuanTri") , quanLyDatVeController.taoLichChieuController);
 
 
 module.exports = quanLyDatVe;

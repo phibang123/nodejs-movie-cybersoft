@@ -1,4 +1,4 @@
-const { Model, DataTypes, Sequelize } = require("sequelize");
+const { Model, DataTypes, Sequelize, Ghe } = require("sequelize");
 
 module.exports = (sequelize) => {
   class GheXuatChieu extends Model {
@@ -40,9 +40,9 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         unique: false
       },
-      DV_giaGhe: {
+      GXC_giaGhe: {
         type: DataTypes.INTEGER,
-        defaultValue: 70000
+        defaultValue: 70000,
       },
       createdAt: {
         type: DataTypes.DATE,
@@ -72,6 +72,6 @@ module.exports = (sequelize) => {
       timestamps: true, // Nếu false bỏ qua createdAt, updatedAt
     }
   );
-
+ 
   return GheXuatChieu;
 };

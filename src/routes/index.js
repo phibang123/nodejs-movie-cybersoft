@@ -2,7 +2,7 @@ const express = require("express");
 const quanLyNguoiDungRouter = require("./QuanLyNguoiDung/quanLyNguoiDung.router");
 const quanLyPhimRouter = require("./QuanLyPhim/quanLyPhim.router");
 const quanLyRapRouter = require("./QuanLyRap/quanLyRap.router");
-const quanLyDatVeRouter = require("./QuanLyDatVe/QuanLyDatVe.router");
+const quanLyDatVeRouter = require("./QuanLyDatVe/quanLyDatVe.router");
 
 
 const rootRouter = express.Router();

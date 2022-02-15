@@ -31,6 +31,17 @@ module.exports = (sequelize) => {
       G_tenGhe: {
         type: DataTypes.STRING, 
         collate: 'utf8_unicode_ci', 
+        set(value)
+        {
+          if (Number(value) < 10)
+          {
+            this.setDataValue("G_tenGhe","0"+ value);
+          }
+          else
+          {
+            this.setDataValue("G_tenGhe", value)
+          }
+				},
        
       },
       // G_giaMD: {
@@ -41,16 +52,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING, 
         collate: 'utf8_unicode_ci', 
         allowNull: false,
-        // set(value)
-        // {
-        //   if (value === "Vip")
-        //   {
-        //     let giaLichChieu = LichChieu.getDataValue("LC_giaVe");
-
-        //     this.setDataValue('G_giaVe', giaLichChieu * 1.25);
-        //   }
-        //   this.setDataValue('G_giaVe', giaLichChieu);
-        // }
+        get()
+        {
+          return this.getDataValue('G_loaiGhe')
+        }
       },
     
       G_stt: {

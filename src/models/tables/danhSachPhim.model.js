@@ -31,6 +31,9 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
+        get() {
+          return this.getDataValue("DSP_id");
+        }
       },
       P_maPhim: {
         type: DataTypes.INTEGER,

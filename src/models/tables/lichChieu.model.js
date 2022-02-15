@@ -1,4 +1,6 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
+const moment = require("moment")
+
 
 module.exports = (sequelize) => {
   class LichChieu extends Model {
@@ -55,7 +57,13 @@ module.exports = (sequelize) => {
       LC_ngayChieuGioiChieu: {
         type: DataTypes.DATE, //  
         allowNull: false,
-        defaultValue: DataTypes.NOW
+       // defaultValue: DataTypes.NOW,
+        validate: {
+          isDate: {
+            msg: true,
+            args: `Ngày tháng phải theo dạng ${Date.now()}`
+          }
+        }
       },
       LC_giaVe: {
         type: DataTypes.FLOAT, //  

@@ -8,5 +8,9 @@ module.exports = {
   db_port: process.env.DB_PORT,
 
   secrect_bcrypt: process.env.SECRECT_BCRYPT,
-  secret_key: process.env.SECRET_KEY
+  secret_key: process.env.SECRET_KEY,
+
+
+  s3_access_key: "",
+  s3_secret_key: ""
 };

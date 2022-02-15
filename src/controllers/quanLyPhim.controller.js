@@ -51,9 +51,19 @@ const xoaPhimController = async (req, res) =>
 		return res.status(400).json(400, error.content);
 	}
 }
+
+const themPhimUploadHinhController = async (req, res) =>
+{
+	try {
+		
+	} catch (error) {
+		
+	}
+}
 module.exports = {
 	layDanhSachBaner,
 	layDanhSachPhim,
 	layThongTinPhim,
-	xoaPhimController
+	xoaPhimController,
+	themPhimUploadHinhController
 };

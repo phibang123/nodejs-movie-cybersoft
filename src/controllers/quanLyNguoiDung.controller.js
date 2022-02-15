@@ -48,7 +48,7 @@ const layDanhSachLoaiNguoiDungController = async (req, res) => {
 		if (error === "BAD") {
 			return res.status(500).json(500, "serveice error");
 		}
-		return res.status(400).json(400, error.content);
+		return res.status(400).json(400, error);
 	}
 };
 
@@ -61,7 +61,7 @@ const layDanhSachNguoiDungController = async (req, res) => {
 		if (error === "BAD") {
 			return res.status(500).json(500, "serveice error");
 		}
-		return res.status(400).json(400, error.content);
+		return res.status(400).json(400, error);
 	}
 };
 
@@ -73,7 +73,7 @@ const layDanhSachNguoiDungPhanTranController = async (req, res) => {
 		if (error === "BAD") {
 			return res.status(500).json(500, "serveice error");
 		}
-		return res.status(400).json(400, error.content);
+		return res.status(400).json(400, error);
 	}
 };
 
@@ -164,10 +164,15 @@ const xoaNguoiDungController = async (req, res) => {
 const layThongTinTaiKhoanController = async (req, res) =>
 {
 	try {
-		let user = await layThongTinTaiKhoan(req.user.taiKhoan);
+		let user = await layThongTinTaiKhoan(req.user.id);
+		return res.status(200).json(200, user);
 	} catch (error) {
 		if (error === "BAD") {
 			return res.status(500).json(500, error);
+		}
+		if (error.name === "SequelizeUniqueConstraintError")
+		{
+			return res.status(500).json(500, "do thiết kế DB sai dạng chuẩn nên không thể tạo lại phim trong rạp đó đc")
 		}
 		return res.status(400).json(400, error);
 	}
