@@ -1,4 +1,4 @@
-const { layBanner, layPhim,layThongTinPhimTheoMa, xoaPhim ,themPhim ,upHinh, timTim ,capNhatPhim} = require("../services/quanLyPhim.service");
+const { layBanner, layPhim,layThongTinPhimTheoMa, xoaPhim ,themPhim ,upHinh, timTim ,capNhatPhim , layPhimPhanTrang} = require("../services/quanLyPhim.service");
 const deleteImag = require("../utils/deleteObjectS3");
 const putImag = require("../utils/putObjectS3");
 
@@ -39,6 +39,20 @@ const layThongTinPhim = async (req, res) => {
 		return res.status(400).json(400, error);
 	}
 };
+
+const layPhimPhanTrangController = async (req, res) =>
+{
+	try {
+		let { soTrang = 1, soPhanTuTrenTrang = 9, tenPhim = "" } = req.query
+		let phanTranPhim = await layPhimPhanTrang({ soTrang, soPhanTuTrenTrang, tenPhim })
+		return res.status(200).json(200, phanTranPhim);
+	} catch (error) {
+		if (error === "BAD") {
+			return res.status(500).json(500, "serveice error");
+		}
+		return res.status(400).json(400, error);
+	}
+}
 
 const xoaPhimController = async (req, res) =>
 {
@@ -105,5 +119,6 @@ module.exports = {
 	layThongTinPhim,
 	xoaPhimController,
 	themPhimUploadHinhController,
-	capNhatPhimController
+	capNhatPhimController,
+	layPhimPhanTrangController
 };

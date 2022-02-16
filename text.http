@@ -55,7 +55,7 @@ GET http://localhost:3000/api/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang
 ###
 //Lấy Thông tin tài khoản
 get http://localhost:3000/api/QuanLyNguoiDung/ThongTinTaiKhoan
-accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFpS2hvYW4iOiJsb2kiLCJsb2FpTmd1b2lEdW5nIjoiS2hhY2hIYW5nIiwiZW1haWwiOiJiYW5nMTIzQGdtYWlsLmNvbSIsImlhdCI6MTY0NDg5Mzk4NSwiZXhwIjoxNjQ0OTgwMzg1fQ.Do18k44G3buEbQY6D8G8iJhN3h4uxGwt3WbL4T5Feyw
+accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4iOiJiYW5nIiwibG9haU5ndW9pRHVuZyI6IlF1YW5UcmkiLCJlbWFpbCI6ImJhbmdAZ21haWwuY29tIiwiaWF0IjoxNjQ0OTgxNjU3LCJleHAiOjE2NDUwNjgwNTd9.eAIafJL-ixFRmNC1Jf2rXtOYhcE1q9N1Wq0gacWBaP4
 
 
 
@@ -66,7 +66,7 @@ accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4
 Content-Type: application/json
 
 {
-  "taiKhoan": "bang",
+  "taiKhoan": "bang333",
   "matKhau": "1234597",
   "email": "phibansg9@gmail.com",
   "soDt": "51212265",
@@ -112,6 +112,11 @@ GET http://localhost:3000/api/QuanLyPhim/LayDanhSachPhim?tenPhim=
 ###
 //lấy thông tin phim
 GET http://localhost:3000/api/QuanLyPhim/LayThongTinPhim?maPhim=1
+
+
+###
+//lấy danh sách phim phân trang
+GET http://localhost:3000/api/QuanLyPhim/LayDanhSachPhimPhanTrang?soTrang=1&soPhanTuTrenTrang=3
 
 
 ###
@@ -170,20 +175,20 @@ accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4
 
 ###
 //Dat Ve
-GET http://localhost:3000/api/QuanLyDatVe/DatVe
+POST  http://localhost:3000/api/QuanLyDatVe/DatVe
 Content-Type: application/json
-accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4iOiJiYW5nIiwibG9haU5ndW9pRHVuZyI6IlF1YW5UcmkiLCJlbWFpbCI6ImJhbmdAZ21haWwuY29tIiwiaWF0IjoxNjQ0ODk4MzI3LCJleHAiOjE2NDQ5ODQ3Mjd9.FD1iSnfTE4PWF_z0sndECHbnqEpRdi8u4qHRwuSSuFs
+accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4iOiJiYW5nIiwibG9haU5ndW9pRHVuZyI6IlF1YW5UcmkiLCJlbWFpbCI6ImJhbmdAZ21haWwuY29tIiwiaWF0IjoxNjQ0OTc4MDA1LCJleHAiOjE2NDUwNjQ0MDV9.7RMC0WT4SLw0Bz0-TEVUERRnpZOVLRgCQYdvFt2EXe4
 
 {
- {
-  "maLichChieu": 0,
+  "maLichChieu": 2,
   "danhSachVe": [
     {
-      "maGhe": 0,
-      "giaVe": 0
+      "maGhe": 8
+    },
+    {
+      "maGhe": 9
     }
   ]
-}
 }
 
 

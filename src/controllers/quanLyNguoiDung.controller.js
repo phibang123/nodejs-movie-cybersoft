@@ -67,8 +67,9 @@ const layDanhSachNguoiDungController = async (req, res) => {
 
 const layDanhSachNguoiDungPhanTranController = async (req, res) => {
 	try {
-		let { tuKhoa = "" } = req.query;
-		await danhSachNguoiDungPhanTrang();
+		let { soTrang = 1, soPhanTuTrenTrang = 9, tuKhoa = "" } = req.query
+		let phanTrangNguoiDung = await danhSachNguoiDungPhanTrang({ soTrang , soPhanTuTrenTrang , tuKhoa });
+		return res.status(200).json(200, phanTrangNguoiDung)
 	} catch (error) {
 		if (error === "BAD") {
 			return res.status(500).json(500, "serveice error");

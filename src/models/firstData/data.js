@@ -311,7 +311,7 @@ const fistData = () => {
 		})
 		//ghe Xuat Chieu
 		.then((result) => {
-			for (let i = 3; i <= 200; i++) {
+			for (let i = 4; i <= 200; i++) {
 				GheXuatChieu.create({
 					G_maGhe: i,
 					LC_maLichChieu: 1,
@@ -323,15 +323,23 @@ const fistData = () => {
 			GheXuatChieu.create({
 				G_maGhe: 1,
 				LC_maLichChieu: 1,
+				GXC_giaGhe: 50000,
 				DV_maVe: 1,
-				
 			});
 		})
 		.then((result) => {
 			GheXuatChieu.create({
 				G_maGhe: 2,
 				LC_maLichChieu: 1,
+				GXC_giaGhe: 50000,
 				DV_maVe: 1,
+			});
+		})
+		.then((result) => {
+			GheXuatChieu.create({
+				G_maGhe: 3,
+				LC_maLichChieu: 1,
+				DV_maVe: 2,
 			});
 		});
 	  

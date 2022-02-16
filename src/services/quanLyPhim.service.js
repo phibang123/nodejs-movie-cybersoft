@@ -2,7 +2,7 @@ const { Banner, Phim, DanhSachPhim } = require("../models/root.model");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const kebabCase = require("lodash.kebabcase");
-
+const _ = require("lodash")
 const layBanner = async (data) => {
 	try {
 		const allBanner = await Banner.findAll({ raw: true });
@@ -77,6 +77,49 @@ const layThongTinPhimTheoMa = async (data) => {
 		throw error;
 	}
 };
+
+const layPhimPhanTrang = async (data) =>
+{
+	try {
+		let { soTrang, soPhanTuTrenTrang, tenPhim } = data;
+		let phimPhanTrang = await Phim.findAll({
+			where: {
+				P_tenPhim: {
+					[Op.like]: `%${tenPhim}%`,
+				},
+			},
+		});
+
+		
+		let phimCUS = phimPhanTrang.slice(Number((soTrang * soPhanTuTrenTrang) - soPhanTuTrenTrang) , Number(soTrang * soPhanTuTrenTrang))
+	
+		let phanTrang = {
+			currentPage: Number(soTrang),
+			count: phimCUS.length,
+			totalPages: Math.round(Number(phimPhanTrang.length / soPhanTuTrenTrang)),
+			totalCount: phimPhanTrang.length,
+			items: phimCUS.map((p) =>
+			{
+				return {
+					maPhim: p.P_maPhim,
+					tenPhim: p.P_tenPhim,
+					biDanh: p.P_biDanh,
+					trailer: p.P_trailer,
+					hinhAnh: p.P_hinhAnh,
+					moTa: p.P_moTa,
+					ngayKhoiChieu: p.P_ngayKhoiChieu,
+					danhGia: p.P_danhGia,
+					hot: p.P_hot,
+					dangChieu: p.P_dangChieu,
+					sapChieu: p.P_sapChieu
+				}
+			})
+		}
+		return phanTrang
+	} catch (error) {
+		throw error
+	}
+}
 
 const xoaPhim = async (data) => {
 	try {
@@ -210,4 +253,5 @@ module.exports = {
 	upHinh,
 	timTim,
 	capNhatPhim,
+	layPhimPhanTrang
 };

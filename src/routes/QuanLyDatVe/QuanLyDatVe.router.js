@@ -7,5 +7,6 @@ quanLyDatVe.get("/LayDanhSachPhongVe", quanLyDatVeController.layDanhSachPhongVeC
 
 quanLyDatVe.post("/TaoLichChieu", authenticate, authorize("QuanTri") , quanLyDatVeController.taoLichChieuController);
 
+quanLyDatVe.post("/DatVe", authenticate, quanLyDatVeController.datVeController);
 
 module.exports = quanLyDatVe;

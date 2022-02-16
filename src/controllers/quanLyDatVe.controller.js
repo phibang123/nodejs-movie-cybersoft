@@ -1,4 +1,4 @@
-const { layDanhSachPhongVe, taoLichChieu } = require("../services/quanLyDatVe.service");
+const { layDanhSachPhongVe, taoLichChieu ,datVe} = require("../services/quanLyDatVe.service");
 
 
 
@@ -34,7 +34,27 @@ const taoLichChieuController = async (req, res) => {
 	}
 };
 
+const datVeController = async (req, res) =>
+{
+	try {
+		let { maLichChieu, danhSachVe } = req.body;
+		let id = req.user.id;
+		await datVe({ id, maLichChieu, danhSachVe });
+		return res.status(200).json(200, "success");
+	} catch (error) {
+		if (error === "BAD") {
+			return res.status(500).json(500, "serveice error");
+    }
+    if (error.name === "SequelizeUniqueConstraintError")
+		{
+			return res.status(500).json(500, "BAD")
+		}
+		return res.status(400).json(400, error);
+	}
+}
+
 module.exports = {
 	layDanhSachPhongVeController,
 	taoLichChieuController,
+	datVeController
 };

@@ -42,9 +42,9 @@ module.exports = (sequelize) => {
       },
       DV_ngayDat: {
         type: DataTypes.DATE, 
-        field: "created_at"
+        field: "created_at",
       },
-     
+  
       createdAt: {
         type: DataTypes.DATE,
         field: "created_at"

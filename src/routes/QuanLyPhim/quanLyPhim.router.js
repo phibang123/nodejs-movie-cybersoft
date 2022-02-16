@@ -10,6 +10,8 @@ quanLyPhimRouter.get("/LayDanhSachBanner", quanLyPhimController.layDanhSachBaner
 
 quanLyPhimRouter.get("/LayDanhSachPhim", quanLyPhimController.layDanhSachPhim);
 
+quanLyPhimRouter.get("/LayDanhSachPhimPhanTrang", quanLyPhimController.layPhimPhanTrangController);
+
 quanLyPhimRouter.post("/ThemPhimUploadHinh", upload.single("hinhAnh"), /*putImag  ,*/ quanLyPhimController.themPhimUploadHinhController);
 
 quanLyPhimRouter.post("/CapNhatPhimUpload", upload.single("hinhAnh"), /*putImag  ,*/ quanLyPhimController.capNhatPhimController);

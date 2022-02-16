@@ -13,16 +13,13 @@ quanLyNguoiDungRouter.post("/DangNhap", quanLyNguoiDungController.dangNhapContro
 
 quanLyNguoiDungRouter.get("/LayDanhSachNguoiDung", quanLyNguoiDungController.layDanhSachNguoiDungController);
 
-//delay
 quanLyNguoiDungRouter.get("/LayDanhSachNguoiDungPhanTrang", quanLyNguoiDungController.layDanhSachNguoiDungPhanTranController);
-//
 
-quanLyNguoiDungRouter.get("/TimKiemNguoiDung", quanLyNguoiDungController.layDanhSachNguoiDungController); // nhưng lấy danh sách người dùng
+quanLyNguoiDungRouter.get("/TimKiemNguoiDung", quanLyNguoiDungController.layDanhSachNguoiDungController); // nhưng lấy từ danh sách người dùng
 
+quanLyNguoiDungRouter.get("/TimKiemNguoiDungPhanTrang", quanLyNguoiDungController.layDanhSachNguoiDungPhanTranController); // nhưng lấy từ lấy danh sách người dùng phân trang
 
-//delay
 quanLyNguoiDungRouter.get("/ThongTinTaiKhoan", authenticate, quanLyNguoiDungController.layThongTinTaiKhoanController)
-//
 
 quanLyNguoiDungRouter.post("/ThemNguoiDung", authenticate, authorize("QuanTri"), quanLyNguoiDungController.themNguoiDungController)
 
