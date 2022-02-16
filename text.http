@@ -105,7 +105,7 @@ GET http://localhost:3000/api/QuanLyPhim/LayDanhSachBanner
 
 ###
 //lấy danh sách Phim
-GET http://localhost:3000/api/QuanLyPhim/LayDanhSachPhim?tenPhim=spider-man
+GET http://localhost:3000/api/QuanLyPhim/LayDanhSachPhim?tenPhim=
 
 
 
@@ -116,8 +116,8 @@ GET http://localhost:3000/api/QuanLyPhim/LayThongTinPhim?maPhim=1
 
 ###
 //xóa phim
-GET http://localhost:3000/api/QuanLyPhim/XP?maPhim=1
-accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4iOiJiYW5nIiwibG9haU5ndW9pRHVuZyI6IlF1YW5UcmkiLCJlbWFpbCI6ImJhbmdAZ21haWwuY29tIiwiaWF0IjoxNjQ0ODU0MDM2LCJleHAiOjE2NDQ5NDA0MzZ9.IxzhTMeaNXmgxt6LuzbpDZO8ujEx4JSsNDZDsUVLTek
+GET http://localhost:3000/api/QuanLyPhim/XP?maPhim=3
+accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4iOiJiYW5nIiwibG9haU5ndW9pRHVuZyI6IlF1YW5UcmkiLCJlbWFpbCI6ImJhbmdAZ21haWwuY29tIiwiaWF0IjoxNjQ0OTcwMTYzLCJleHAiOjE2NDUwNTY1NjN9._B_8mQELofW3vj52QwkPSlAcHbwBxsuvqGyU0X0P67E
 
 
 
@@ -169,7 +169,7 @@ accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4
 
 
 ###
-//lấy danh sách phòng vé
+//Dat Ve
 GET http://localhost:3000/api/QuanLyDatVe/DatVe
 Content-Type: application/json
 accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4iOiJiYW5nIiwibG9haU5ndW9pRHVuZyI6IlF1YW5UcmkiLCJlbWFpbCI6ImJhbmdAZ21haWwuY29tIiwiaWF0IjoxNjQ0ODk4MzI3LCJleHAiOjE2NDQ5ODQ3Mjd9.FD1iSnfTE4PWF_z0sndECHbnqEpRdi8u4qHRwuSSuFs

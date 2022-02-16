@@ -9,7 +9,7 @@ const putImag = async (data, tenPhim) => {
 	const { buffer, originalname, mimetype } = data;
 	
 
-	if (req.file.size >= 3000000)
+	if (data.size >= 3000000)
 	{
 	  return res.status(400).json(400, "Ảnh phải nhỏ hơn 3mb");
 	}

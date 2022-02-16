@@ -85,22 +85,21 @@ const layThongTinLichChieu = async (data) => {
 					include: [
 						{
 							model: LichChieu,
-							include: { model: Rap },
+							include: { model: Rap, as: "rapChieuTheoPhim" },
 							as: "phimChieuRap",
 						},
 						{ model: Phim },
 					],
 					where: {
-            P_maPhim: {
-              // "$eq" changes to "[Op.eq]"
-              [Op.ne]: null
-            }
-        }
+						P_maPhim: {
+							// "$eq" changes to "[Op.eq]"
+							[Op.ne]: null,
+						},
+					},
 				},
-			]
-			
-		})
-		//console.log(JSON.stringify(cumRap, null, 2));
+			],
+		});
+		console.log(JSON.stringify(cumRap, null, 2));
 		let [mapHeThong] = [thongTinRap].map((ht) => {
 			return {
 				logo: ht.HTR_logo,
@@ -112,7 +111,7 @@ const layThongTinLichChieu = async (data) => {
 						hinhAnh: cr.CR_hinhAnh,
 						maCumRap: cr.CR_maCumRap,
 						tenCumRap: cr.CR_tenCumRap,
-						danhSachPhim:  cr.DanhSachPhims.map((p) => {
+						danhSachPhim: cr.DanhSachPhims.map((p) => {
 							return {
 								dangChieu: p.Phim.P_dangChieu,
 								hinhAnh: p.Phim.P_hinhAnh,
@@ -127,7 +126,7 @@ const layThongTinLichChieu = async (data) => {
 										giaVe: lc.LC_giaVe,
 										maRap: String(lc.R_maRap),
 										ngayChieuGioChieu: lc.LC_ngayChieuGioChieu,
-										tenRap: lc.Rap.R_tenRap,
+										tenRap: lc.rapChieuTheoPhim.R_tenRap,
 									};
 								}),
 							};
@@ -163,6 +162,7 @@ const layThongTinLichChieuTheoPhim = async (data) => {
 								model: LichChieu,
 								as: "phimChieuRap",
 								include: {
+									as: "rapChieuTheoPhim",
 									model: Rap,
 								},
 							},
@@ -220,7 +220,7 @@ const layThongTinLichChieuTheoPhim = async (data) => {
 
 		return thongTinPhim;
 	} catch (error) {
-		console.log(error);
+		console.log(error, 123);
 		throw error;
 	}
 };
