@@ -61,7 +61,7 @@ module.exports = (sequelize) => {
         validate: {
           isDate: {
             msg: true,
-            args: `Ngày tháng phải theo dạng ${Date.now()}`
+            args: `Ngày tháng phải theo dạng YYYY-MM-DD hh:mm`
           }
         }
       },

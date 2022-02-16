@@ -1,6 +1,7 @@
 const { Banner, Phim, DanhSachPhim } = require("../models/root.model");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
+const kebabCase = require("lodash.kebabcase");
 
 const layBanner = async (data) => {
 	try {
@@ -32,6 +33,7 @@ const layPhim = async (data) => {
 		});
 		const phim = allPhim.map((p) => {
 			return {
+				tenPhim: p.P_tenPhim,
 				maPhim: p.P_maPhim,
 				biDanh: p.P_biDanh,
 				trailer: p.P_trailer,
@@ -108,9 +110,104 @@ const xoaPhim = async (data) => {
 	}
 };
 
+const themPhim = async (data) => {
+	try {
+		let {
+			tenPhim: P_tenPhim,
+			trailer: P_trailer,
+			moTa: P_moTa,
+			ngayKhoiChieu: P_ngayKhoiChieu,
+			sapChieu: P_sapChieu,
+			dangChieu: P_dangChieu,
+			hot: P_hot,
+			danhGia: P_danhGia,
+		} = data;
+		let P_biDanh = encodeURI(kebabCase(P_tenPhim));
+		console.log(P_tenPhim);
+		let phim = await Phim.create({
+			P_tenPhim,
+			P_trailer,
+			P_moTa,
+			P_biDanh,
+			P_ngayKhoiChieu,
+			P_sapChieu,
+			P_dangChieu,
+			P_hot,
+			P_danhGia,
+		});
+		return phim;
+	} catch (error) {
+		throw error;
+	}
+};
+
+const upHinh = async (data, url) => {
+	try {
+		data.set({
+			P_hinhAnh: url,
+		});
+		await data.save();
+	} catch (error) {
+		throw error;
+	}
+};
+
+const timTim = async (data) => {
+	try {
+		let phim = await Phim.findOne({
+			where: {
+				P_maPhim: data,
+			},
+		});
+		return phim;
+	} catch (error) {
+		throw error;
+	}
+};
+
+const capNhatPhim = async (data) => {
+	try {
+		let {
+			maPhim,
+			tenPhim,
+			trailer,
+			moTa,
+			ngayKhoiChieu,
+			sapChieu,
+			dangChieu,
+			hot,
+			danhGia,
+		} = data;
+
+		let phim = await Phim.findOne({
+			where: {
+				P_maPhim: maPhim,
+			},
+		});
+		phim.set({
+			P_tenPhim: tenPhim,
+			P_trailer: trailer,
+			P_moTa: moTa,
+			P_ngayKhoiChieu: ngayKhoiChieu,
+			P_sapChieu: sapChieu,
+			P_dangChieu: dangChieu,
+			P_hot: hot,
+			P_danhGia: danhGia,
+		});
+		let phimUpdate = await phim.save();
+		return phimUpdate;
+	} catch (error) {
+		throw error;
+	}
+};
+
 module.exports = {
 	layBanner,
 	layPhim,
 	layThongTinPhimTheoMa,
 	xoaPhim,
+	themPhim,
+	upHinh,
+	timTim,
+	capNhatPhim,
 };
