@@ -1,12 +1,20 @@
 const { Banner, Phim, DanhSachPhim } = require("../models/root.model");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
+const moment = require("moment");
 const kebabCase = require("lodash.kebabcase");
-const _ = require("lodash")
+const _ = require("lodash");
+const validateDate = require("validate-date");
+
+Date.prototype.isValid = function () {
+	// An invalid date object returns NaN for getTime() and NaN is the only
+	// object not strictly equal to itself.
+	return this.getTime() === this.getTime();
+};
+
 const layBanner = async (data) => {
 	try {
 		const allBanner = await Banner.findAll({ raw: true });
-		console.log(allBanner);
 		const banner = allBanner.map((banner) => {
 			return {
 				maBanner: banner.B_maBanner,
@@ -57,6 +65,10 @@ const layThongTinPhimTheoMa = async (data) => {
 		let phim = await Phim.findOne({
 			where: { P_maPhim: data },
 		});
+
+		if (!phim) {
+			throw new Error("Không tìm thấy phim");
+		}
 		let thongTinPhim = [phim].map((ttp) => {
 			return {
 				biDanh: ttp.P_biDanh,
@@ -78,8 +90,7 @@ const layThongTinPhimTheoMa = async (data) => {
 	}
 };
 
-const layPhimPhanTrang = async (data) =>
-{
+const layPhimPhanTrang = async (data) => {
 	try {
 		let { soTrang, soPhanTuTrenTrang, tenPhim } = data;
 		let phimPhanTrang = await Phim.findAll({
@@ -90,16 +101,17 @@ const layPhimPhanTrang = async (data) =>
 			},
 		});
 
-		
-		let phimCUS = phimPhanTrang.slice(Number((soTrang * soPhanTuTrenTrang) - soPhanTuTrenTrang) , Number(soTrang * soPhanTuTrenTrang))
-	
+		let phimCUS = phimPhanTrang.slice(
+			Number(soTrang * soPhanTuTrenTrang - soPhanTuTrenTrang),
+			Number(soTrang * soPhanTuTrenTrang)
+		);
+
 		let phanTrang = {
 			currentPage: Number(soTrang),
 			count: phimCUS.length,
 			totalPages: Math.round(Number(phimPhanTrang.length / soPhanTuTrenTrang)),
 			totalCount: phimPhanTrang.length,
-			items: phimCUS.map((p) =>
-			{
+			items: phimCUS.map((p) => {
 				return {
 					maPhim: p.P_maPhim,
 					tenPhim: p.P_tenPhim,
@@ -111,15 +123,80 @@ const layPhimPhanTrang = async (data) =>
 					danhGia: p.P_danhGia,
 					hot: p.P_hot,
 					dangChieu: p.P_dangChieu,
-					sapChieu: p.P_sapChieu
-				}
-			})
-		}
-		return phanTrang
+					sapChieu: p.P_sapChieu,
+				};
+			}),
+		};
+		return phanTrang;
 	} catch (error) {
-		throw error
+		throw error;
 	}
-}
+};
+
+const layThongTinPhimTheoNgay = async (data) => {
+	try
+	{
+		console.log(231)
+		const formatDate = "yyyy-MM-dd HH:mm:ss";
+		let { soTrang, soPhanTuTrenTrang, tenPhim, tuNgay, denNgay } = data;
+
+		if (
+			!validateDate(tuNgay, (responseType = "boolean")) ||
+			!validateDate(denNgay, (responseType = "boolean"))
+		) {
+			console.log(123);
+			throw new Error(
+				"Vui lòng nhập đúng định dạnh ngày tháng năm, vd: dd/MM/yyyy"
+			);
+		}
+
+		let formatTuNgay = moment(tuNgay).format(formatDate);
+		let formatDenNgay = moment(denNgay).format(formatDate);
+
+		let phimPhanTrang = await Phim.findAll({
+			where: {
+				P_tenPhim: {
+					[Op.like]: `%${tenPhim}%`,
+				},
+				P_ngayKhoiChieu: {
+					[Op.gte]: formatTuNgay,
+					[Op.lte]: formatDenNgay,
+				},
+			},
+		});
+		let phimCUS = phimPhanTrang.slice(
+			Number(soTrang * soPhanTuTrenTrang - soPhanTuTrenTrang),
+			Number(soTrang * soPhanTuTrenTrang)
+		);
+
+		let phanTrang = {
+			currentPage: Number(soTrang),
+			count: phimCUS.length,
+			totalPages: Math.round(Number(phimPhanTrang.length / soPhanTuTrenTrang)),
+			totalCount: phimPhanTrang.length,
+			formDate: formatTuNgay,
+			toDate: formatDenNgay,
+			items: phimCUS.map((p) => {
+				return {
+					maPhim: p.P_maPhim,
+					tenPhim: p.P_tenPhim,
+					biDanh: p.P_biDanh,
+					trailer: p.P_trailer,
+					hinhAnh: p.P_hinhAnh,
+					moTa: p.P_moTa,
+					ngayKhoiChieu: p.P_ngayKhoiChieu,
+					danhGia: p.P_danhGia,
+					hot: p.P_hot,
+					dangChieu: p.P_dangChieu,
+					sapChieu: p.P_sapChieu,
+				};
+			}),
+		};
+		return phanTrang;
+	} catch (error) {
+		throw error;
+	}
+};
 
 const xoaPhim = async (data) => {
 	try {
@@ -148,7 +225,6 @@ const xoaPhim = async (data) => {
 		// await banner.destroy()
 		// await phim.destroy()
 	} catch (error) {
-		console.log(error);
 		throw error;
 	}
 };
@@ -166,7 +242,6 @@ const themPhim = async (data) => {
 			danhGia: P_danhGia,
 		} = data;
 		let P_biDanh = encodeURI(kebabCase(P_tenPhim));
-		console.log(P_tenPhim);
 		let phim = await Phim.create({
 			P_tenPhim,
 			P_trailer,
@@ -253,5 +328,6 @@ module.exports = {
 	upHinh,
 	timTim,
 	capNhatPhim,
-	layPhimPhanTrang
+	layPhimPhanTrang,
+	layThongTinPhimTheoNgay,
 };

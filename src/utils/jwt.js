@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config/index");
 
-const EXPIRES_IN = 60 * 60 * 24; // seconds
 
 const generateToken = (user) =>
 {
@@ -13,7 +12,7 @@ const generateToken = (user) =>
     email: user.ND_email,
   };
   const accessToken = jwt.sign(payload, config.secret_key, {
-    expiresIn: EXPIRES_IN,
+    expiresIn: "24h",
   });
 
   return {

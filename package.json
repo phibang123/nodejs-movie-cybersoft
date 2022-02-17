@@ -18,7 +18,8 @@
     "moment": "^2.29.1",
     "multer": "^1.4.4",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.15.1"
+    "sequelize": "^6.15.1",
+    "validate-date": "^2.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15",

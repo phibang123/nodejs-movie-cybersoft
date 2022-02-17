@@ -12,6 +12,8 @@ quanLyPhimRouter.get("/LayDanhSachPhim", quanLyPhimController.layDanhSachPhim);
 
 quanLyPhimRouter.get("/LayDanhSachPhimPhanTrang", quanLyPhimController.layPhimPhanTrangController);
 
+quanLyPhimRouter.get("/LayDanhSachPhimTheoNgay", quanLyPhimController.layDanhSanhPhimTheoNgayController);
+
 quanLyPhimRouter.post("/ThemPhimUploadHinh", upload.single("hinhAnh"), /*putImag  ,*/ quanLyPhimController.themPhimUploadHinhController);
 
 quanLyPhimRouter.post("/CapNhatPhimUpload", upload.single("hinhAnh"), /*putImag  ,*/ quanLyPhimController.capNhatPhimController);

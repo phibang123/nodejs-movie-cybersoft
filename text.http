@@ -44,11 +44,11 @@ GET http://localhost:3000/api/QuanLyNguoiDung/LayDanhSachNguoiDung?tuKhoa=&maNho
 
 ###
 //tìm kiềm người dùng
-GET http://localhost:3000/api/QuanLyNguoiDung/TimKiemNguoiDung?tuKhoa=bang
+GET http://localhost:3000/api/QuanLyNguoiDung/TimKiemNguoiDung?tuKhoa=xxx
 
 ###
 //lấy danh sách người dùng phân trang
-GET http://localhost:3000/api/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang
+GET http://localhost:3000/api/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang?tuKhoa=xxx
 
 
 
@@ -105,18 +105,21 @@ GET http://localhost:3000/api/QuanLyPhim/LayDanhSachBanner
 
 ###
 //lấy danh sách Phim
-GET http://localhost:3000/api/QuanLyPhim/LayDanhSachPhim?tenPhim=
-
+GET http://localhost:3000/api/QuanLyPhim/LayDanhSachPhim?tenPhim=xxxxx
 
 
 ###
 //lấy thông tin phim
-GET http://localhost:3000/api/QuanLyPhim/LayThongTinPhim?maPhim=1
+GET http://localhost:3000/api/QuanLyPhim/LayThongTinPhim?maPhim=5
 
 
 ###
 //lấy danh sách phim phân trang
 GET http://localhost:3000/api/QuanLyPhim/LayDanhSachPhimPhanTrang?soTrang=1&soPhanTuTrenTrang=3
+
+###
+//lấy danh sách phim theo ngày
+GET http://localhost:3000/api/QuanLyPhim/LayDanhSachPhimTheoNgay?tuNgay=10%2F01%2F2021&denNgay=10%2F12%2F2023
 
 
 ###
@@ -136,7 +139,7 @@ GET http://localhost:3000/api/QuanLyRap/LayThongTinHeThongRap?maHeThongRap=CGV
 
 ###
 //lấy tông tin cụm rạp theo hệ thống
-GET http://localhost:3000/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=CGV
+GET http://localhost:3000/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=CGE
 
 
 
@@ -147,7 +150,7 @@ GET http://localhost:3000/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThong
 
 ###
 //lấy tông tin lich chiếu phim
-GET http://localhost:3000/api/QuanLyRap/LayThongTinLichChieuPhim?maPhim=2
+GET http://localhost:3000/api/QuanLyRap/LayThongTinLichChieuPhim?maPhim=5
 
 
 
@@ -190,5 +193,6 @@ accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGFpS2hvYW4
     }
   ]
 }
+
 
 

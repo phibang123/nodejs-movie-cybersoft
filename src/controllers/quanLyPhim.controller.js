@@ -1,4 +1,4 @@
-const { layBanner, layPhim,layThongTinPhimTheoMa, xoaPhim ,themPhim ,upHinh, timTim ,capNhatPhim , layPhimPhanTrang} = require("../services/quanLyPhim.service");
+const { layBanner, layPhim,layThongTinPhimTheoMa, xoaPhim ,themPhim ,upHinh, timTim ,capNhatPhim , layPhimPhanTrang , layThongTinPhimTheoNgay} = require("../services/quanLyPhim.service");
 const deleteImag = require("../utils/deleteObjectS3");
 const putImag = require("../utils/putObjectS3");
 
@@ -26,7 +26,6 @@ const layDanhSachPhim = async (req, res) => {
 	}
 };
 
-
 const layThongTinPhim = async (req, res) => {
 	try {
 		let { maPhim } = req.query;
@@ -46,6 +45,21 @@ const layPhimPhanTrangController = async (req, res) =>
 		let { soTrang = 1, soPhanTuTrenTrang = 9, tenPhim = "" } = req.query
 		let phanTranPhim = await layPhimPhanTrang({ soTrang, soPhanTuTrenTrang, tenPhim })
 		return res.status(200).json(200, phanTranPhim);
+	} catch (error) {
+		if (error === "BAD") {
+			return res.status(500).json(500, "serveice error");
+		}
+		return res.status(400).json(400, error);
+	}
+}
+
+const layDanhSanhPhimTheoNgayController = async (req, res) =>
+{
+	try
+	{
+		let { tuNgay, denNgay, soTrang = 1, soPhanTuTrenTrang = 9, tenPhim = "" } = req.query
+    let phanTranPhimTheoNgay = await layThongTinPhimTheoNgay({ tuNgay, denNgay, soTrang , soPhanTuTrenTrang , tenPhim })
+		return res.status(200).json(200, phanTranPhimTheoNgay);
 	} catch (error) {
 		if (error === "BAD") {
 			return res.status(500).json(500, "serveice error");
@@ -77,12 +91,11 @@ const themPhimUploadHinhController = async (req, res) =>
 		const phim = await themPhim({ tenPhim, trailer, moTa, ngayKhoiChieu, sapChieu, dangChieu, hot, danhGia });
  
 		let url = await putImag(req.file, tenPhim);
-	  console.log(url)
+	 
 		await upHinh(phim, url);
 		return res.status(201).json(201, "success");
 	} catch (error)
 	{
-		console.log(error)
 		if (error.name === "SequelizeValidationError") {
 			return res.status(400).json(400, error.errors[0].message);
 		} else if (error.name === "SequelizeUniqueConstraintError") {
@@ -120,5 +133,6 @@ module.exports = {
 	xoaPhimController,
 	themPhimUploadHinhController,
 	capNhatPhimController,
-	layPhimPhanTrangController
+	layPhimPhanTrangController,
+	layDanhSanhPhimTheoNgayController
 };

@@ -65,7 +65,7 @@ const dangNhap = async (data) => {
 			throw new Error("Tài Khoản và mật khẩu không chính xác");
 		}
 	} catch (error) {
-		console.log(error);
+	
 		throw new Error("Tài Khoản và mật khẩu không chính xác");
 	}
 };
@@ -149,7 +149,6 @@ const danhSachNguoiDungPhanTrang = async (data) => {
 
 	} catch (error)
 	{
-		console.log(error)
 		throw new Error("BAD");
 	}
 };

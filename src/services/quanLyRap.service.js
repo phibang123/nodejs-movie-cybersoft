@@ -21,7 +21,6 @@ const layDanhSachHeThongRap = async (data) => {
 			: await HeThongRap.findAll({
 					raw: true,
 			  });
-
 		const heThong = allHeThong.map((ht) => {
 			return {
 				maHeThongRap: ht.HTR_maHeThongRap,
@@ -74,7 +73,10 @@ const layThongTinLichChieu = async (data) => {
 				HTR_maHeThongRap: data,
 			},
 		});
-
+		if (!thongTinRap)
+		{
+			throw new Error("không tìm thấy hệ thống rạp")
+		}
 		let cumRap = await CumRap.findAll({
 			where: {
 				HTR_maHeThongRap: data,
@@ -99,7 +101,7 @@ const layThongTinLichChieu = async (data) => {
 				},
 			],
 		});
-		console.log(JSON.stringify(cumRap, null, 2));
+		//console.log(JSON.stringify(cumRap, null, 2));
 		let [mapHeThong] = [thongTinRap].map((ht) => {
 			return {
 				logo: ht.HTR_logo,
@@ -138,7 +140,6 @@ const layThongTinLichChieu = async (data) => {
 		//console.log(mapHeThong);
 		return mapHeThong;
 	} catch (error) {
-		console.log(error);
 		throw error;
 	}
 };
@@ -150,6 +151,10 @@ const layThongTinLichChieuTheoPhim = async (data) => {
 				P_maPhim: data,
 			},
 		});
+		if (!thongtinPhim)
+		{
+			throw new Error("Không tìm thấy phim")
+		}
 		let thongTinCumRap = await HeThongRap.findAll({
 			include: [
 				{
@@ -220,7 +225,6 @@ const layThongTinLichChieuTheoPhim = async (data) => {
 
 		return thongTinPhim;
 	} catch (error) {
-		console.log(error, 123);
 		throw error;
 	}
 };

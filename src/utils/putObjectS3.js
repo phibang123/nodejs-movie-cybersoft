@@ -40,7 +40,6 @@ const putImag = async (data, tenPhim) => {
 		// });
 	  await s3.putObject(params).promise()
 		const url = `${ s3_domain_name }/${ dst }`;
-		console.log(url)
 		
 		return url;
 	} catch (error) {

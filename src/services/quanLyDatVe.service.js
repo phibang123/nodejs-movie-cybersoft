@@ -109,14 +109,14 @@ const layDanhSachPhongVe = async (data) => {
 		});
 		return phongVeCustom;
 	} catch (error) {
-		console.log(error);
+
 		throw error;
 	}
 };
 
 const taoLichChieu = async (data) => {
 	try {
-		console.log(data);
+	
 		let maCumRap = await Rap.findOne({
 			where: {
 				R_maRap: data.maRap,
@@ -212,7 +212,7 @@ const datVe = async (data) => {
 			}
 		);
 	} catch (error) {
-		console.log(error);
+	
 		throw error;
 	}
 };
